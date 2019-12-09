@@ -17,5 +17,14 @@
                 <a <?= $_SERVER['SCRIPT_NAME'] === '/login.php' ? 'active' : ''; ?>" href="login.php">Login</a>
             <?php endif; ?>
         </li>
+
+
+        <?php if (!isset($_SESSION['user'])) : ?>
+            <li>
+                <a <?= $_SERVER['SCRIPT_NAME'] === '/register.php' ? 'active' : ''; ?>" href="register.php">Register</a>
+            </li>
+        <?php endif; ?>
+
+
     </ul>
 </nav>
