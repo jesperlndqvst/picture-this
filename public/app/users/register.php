@@ -9,7 +9,8 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $statement = $pdo->prepare('SELECT username, email FROM users WHERE username = :username OR email = :email');
+    $query = 'SELECT username, email FROM users WHERE username = :username OR email = :email';
+    $statement = $pdo->prepare($query);
     $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
