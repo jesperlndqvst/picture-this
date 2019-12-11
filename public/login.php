@@ -3,10 +3,17 @@
 <article>
     <h1>Login</h1>
 
+    <?php if (isset($_SESSION['errors'])) : ?>
+        <?php foreach ($_SESSION['errors'] as $error) : ?>
+            <p><?= $error ?></p>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['errors']); ?>
+    <?php endif; ?>
+
     <form action="app/users/login.php" method="post">
         <div>
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
+            <input type="text" name="email" id="email" required>
             <small>Please provide the your email address.</small>
         </div>
 

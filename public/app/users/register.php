@@ -9,6 +9,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     $email = filter_var(strtolower(trim($_POST['email'])), FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+    // Checks if email is valid
    if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $_SESSION['errors'][] = 'Not a valid email!';
         redirect('/register.php');
