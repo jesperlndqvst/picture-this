@@ -5,14 +5,12 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['email'], $_POST['password'])) {
-    $email = filter_var(strtolower(trim($_POST['email'])), FILTER_SANITIZE_EMAIL);
+    $email = sanitizeEmail($_POST['email']);
+    
+    validateEmail($email, '/login.php');
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['errors'][] = 'Not a valid email!';
-        redirect('/login.php');
-    }
-
-    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
+    $query = 'SELECT * FROM users WHERE email = :email';
+    $statement = $pdo->prepare($query);
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
     $user = $statement->fetch(PDO::FETCH_ASSOC);

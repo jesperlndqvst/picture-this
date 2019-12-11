@@ -5,15 +5,12 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['email'], $_POST['password'])) {
-    $email = filter_var(strtolower(trim($_POST['email'])), FILTER_SANITIZE_EMAIL);
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $email = sanitizeEmail($_POST['email']);
+    $password = hashPassword($_POST['password']);
     $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
     $id = $_SESSION['user']['id'];
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['errors'][] = 'Not a valid email!';
-        redirect('/settings.php');
-    }
+    validateEmail($email, '/settings.php');
 
     // If email is already taken
     $query = 'SELECT email FROM users WHERE email = :email';
