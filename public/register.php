@@ -3,26 +3,27 @@
 <article>
     <h1>Register</h1>
 
+
     <form action="app/users/register.php" method="post">
+
+        <?php if (isset($_SESSION['errors'])) : ?>
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <p><?= $error ?></p>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']); ?>
+        <?php endif; ?>
 
         <div>
             <label for="username">Username</label>
             <input type="text" name="username" id="username" required>
             <small>Please provide the your username.</small>
-            <?php if (isset($_SESSION['username_error'])) : ?>
-                <p><?php echo $_SESSION['username_error']; ?>!</p>
-                <?php unset($_SESSION['username_error']); ?>
-            <?php endif; ?>
         </div>
 
         <div>
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
             <small>Please provide the your email address.</small>
-            <?php if (isset($_SESSION['email_error'])) : ?>
-                <p><?php echo $_SESSION['email_error']; ?>!</p>
-                <?php unset($_SESSION['email_error']); ?>
-            <?php endif; ?>
+
         </div>
 
         <div>

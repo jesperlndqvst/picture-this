@@ -18,12 +18,13 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
 
     // If username or email is taken display error
     if ($users) {
+        $_SESSION['errors'] = [];
         foreach ($users as $user) {
             if ($user['username'] === $username) {
-                $_SESSION['username_error'] = 'Username is already taken';
+                $_SESSION['errors'][] = 'Username is already taken';
             }
             if ($user['email'] === $email) {
-                $_SESSION['email_error'] = 'Email is already taken';
+                $_SESSION['errors'][] = 'Email is already taken';
             }
         }
         redirect('/register.php');
