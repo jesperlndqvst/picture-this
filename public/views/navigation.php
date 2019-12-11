@@ -12,18 +12,19 @@
 
         <li>
             <?php if (isset($_SESSION['user'])) : ?>
-                <a href="/app/users/logout.php">Logout</a>
+                <a href="/app/users/logout.php">Log out</a>
             <?php else : ?>
                 <a <?= $_SERVER['SCRIPT_NAME'] === '/login.php' ? 'active' : ''; ?>" href="login.php">Login</a>
             <?php endif; ?>
         </li>
 
-
-        <?php if (!isset($_SESSION['user'])) : ?>
-            <li>
+        <li>
+            <?php if (!isset($_SESSION['user'])) : ?>
                 <a <?= $_SERVER['SCRIPT_NAME'] === '/register.php' ? 'active' : ''; ?>" href="register.php">Register</a>
-            </li>
-        <?php endif; ?>
+                 <?php else : ?>
+                <a <?= $_SERVER['SCRIPT_NAME'] === '/settings.php' ? 'active' : ''; ?>" href="settings.php">Settings</a>
+            <?php endif; ?>
+        </li>
 
 
     </ul>

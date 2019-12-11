@@ -24,7 +24,6 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
 
     // If username or email is taken display error
     if ($users) {
-        $_SESSION['errors'] = [];
         foreach ($users as $user) {
             if ($user['username'] === $username) {
                 $_SESSION['errors'][] = 'Username is already taken';
