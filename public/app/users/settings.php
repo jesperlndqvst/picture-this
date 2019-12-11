@@ -8,6 +8,7 @@ require __DIR__ . '/../autoload.php';
 if (isset($_POST['email'], $_POST['password'])) {
     $email = filter_var(strtolower(trim($_POST['email'])), FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
     $id = $_SESSION['user']['id'];
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -28,10 +29,11 @@ if (isset($_POST['email'], $_POST['password'])) {
     }
 
     // Updates user data
-    $query = 'UPDATE users SET email = :email, password = :password WHERE id = :id;';
+    $query = 'UPDATE users SET email = :email, password = :password, biography = :biography WHERE id = :id';
     $statement = $pdo->prepare($query);
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->bindParam(':password', $password, PDO::PARAM_STR);
+    $statement->bindParam(':biography', $biography, PDO::PARAM_STR);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
 

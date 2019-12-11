@@ -2,7 +2,7 @@
 
 <article>
     <h1>Settings</h1>
-    <p>Change username or password</p>
+    <p>Change your settings</p>
 
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
@@ -12,7 +12,7 @@
     <?php endif; ?>
 
     <form action="app/users/settings.php" method="post">
-    
+
         <div>
             <label for="email">New email</label>
             <input type="text" name="email" id="email" required>
@@ -23,6 +23,11 @@
             <label for="password">New password</label>
             <input type="password" name="password" id="password" required>
             <small>Please provide the your password (passphrase).</small>
+        </div>
+        <div>
+            <label for="biography">New biography</label>
+            <input type="text" name="biography" id="biography" required>
+            <small>Please provide the your biography</small>
         </div>
 
         <button type="submit">Submit</button>
