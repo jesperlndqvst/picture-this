@@ -5,9 +5,14 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
-    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $username = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
+    $email = filter_var(strtolower(trim($_POST['email'])), FILTER_SANITIZE_EMAIL);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+   if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $_SESSION['errors'][] = 'Not a valid email!';
+        redirect('/register.php');
+   }
 
     $query = 'SELECT username, email FROM users WHERE username = :username OR email = :email';
     $statement = $pdo->prepare($query);
