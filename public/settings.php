@@ -12,6 +12,11 @@
         <?php unset($_SESSION['errors']); ?>
     <?php endif; ?>
 
+    <form action="app/users/upload.php" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit" name="submit">Upload</button>
+    </form>
+
     <form action="app/users/settings.php" method="post">
 
         <div>
