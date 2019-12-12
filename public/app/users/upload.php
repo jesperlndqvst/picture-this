@@ -23,19 +23,17 @@ if (isset($_POST['submit'])) {
                 $fileNameNew = uniqid('', true).".".$fileActialExt;
                 $fileDestination = __DIR__ . '/../uploads/avatars'.$fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
-                redirect('/settings.php?uploadsucess');
+                displayMessage('Your image is uploaded!');
             } else {
-                $_SESSION['errors'][] = 'Your file is too big!';
-                redirect('/settings.php');
+                displayMessage('Your file is too big!');
             }
         } else {
-            $_SESSION['errors'][] = 'There was an error uploading your file!';
-            redirect('/settings.php');
+            displayMessage('There was an error uploading your file!');
         }
     } else {
-        $_SESSION['errors'][] = 'You cannot upload files of this type!';
-        redirect('/settings.php');
+        displayMessage('You cannot upload files of this type!');
     }
+    redirect('/settings.php');
 }
 
 redirect('/');

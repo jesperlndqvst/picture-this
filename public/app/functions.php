@@ -80,6 +80,8 @@ if (!function_exists('validateEmail')) {
      *
      * @param string $email
      *
+     * @param string $path
+     *
      * @return void
      */
     function validateEmail($email, $path)
@@ -90,3 +92,20 @@ if (!function_exists('validateEmail')) {
         }
     }
 }
+
+if (!function_exists('displayMessage')) {
+    /**
+     * Displays an message to the user.
+     *
+     * @param string $message
+     *
+     * @return void
+     */
+    function displayMessage($message)
+    {
+        $_SESSION['errors'][] = "${message}";
+    }
+}
+
+
+

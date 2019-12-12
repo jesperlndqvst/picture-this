@@ -20,7 +20,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        $_SESSION['errors'][] = 'Email is already taken';
+        displayMessage('Email is already taken');
         redirect('/settings.php');
     }
 
@@ -34,12 +34,12 @@ if (isset($_POST['email'], $_POST['password'])) {
     $statement->execute();
 
     if (!$statement) {
-        $_SESSION['errors'][] = 'Couldnt update settings!';
+        displayMessage('Couldnt update settings!');
     } else {
-        $_SESSION['errors'][] = 'Settings updated!';
+        displayMessage('Settings updated!');
     }
-
     redirect('/settings.php');
+
 }
 
 redirect('/');

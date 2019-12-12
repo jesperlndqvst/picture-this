@@ -9,7 +9,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     $email = sanitizeEmail($_POST['email']);
     $password = hashPassword($_POST['password']);
     $biography = 'No bigraphy set';
-    
+
     validateEmail($email, '/register.php');
 
     $query = 'SELECT username, email FROM users WHERE username = :username OR email = :email';
@@ -23,10 +23,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     if ($users) {
         foreach ($users as $user) {
             if ($user['username'] === $username) {
-                $_SESSION['errors'][] = 'Username is already taken';
+                displayMessage('Username is already taken');
             }
             if ($user['email'] === $email) {
-                $_SESSION['errors'][] = 'Email is already taken';
+                displayMessage('Email is already taken');
             }
         }
         redirect('/register.php');
