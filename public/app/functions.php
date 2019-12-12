@@ -17,13 +17,13 @@ if (!function_exists('redirect')) {
     }
 }
 
-if (!function_exists('isLoggedIn')) {
+if (!function_exists('authenticateUser')) {
     /**
      * Redirect the user to the login page if the user has not logged in.
      *
      * @return void
      */
-    function isLoggedIn()
+    function authenticateUser()
     {
         if (!isset($_SESSION['user'])) {
             redirect('/login.php');

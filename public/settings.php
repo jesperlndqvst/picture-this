@@ -1,5 +1,5 @@
 <?php require __DIR__ . '/views/header.php'; ?>
-<?php isLoggedIn() ?>
+<?php authenticateUser() ?>
 
 <article>
     <h1>Settings</h1>
