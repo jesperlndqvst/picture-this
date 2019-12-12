@@ -21,9 +21,10 @@ if (isset($_POST['submit'])) {
         if ($fileError === 0) {
             if ($fileSize < 300000) {
                 $fileNameNew = uniqid('', true).".".$fileActialExt;
-                $fileDestination = __DIR__ . '/../uploads/avatars'.$fileNameNew;
+                $fileDestination = __DIR__ . '/../uploads/avatars/'.$fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
                 displayMessage('Your image is uploaded!');
+                $_SESSION['avatar'] = $fileDestination;
             } else {
                 displayMessage('Your file is too big!');
             }
