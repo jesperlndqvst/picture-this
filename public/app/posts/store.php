@@ -12,7 +12,7 @@ if (isset($_POST['submit'], $_POST['description'])) {
     $fileTmpName = $file['tmp_name'];
     $fileSize = $file['size'];
     $fileError = $file['error'];
-    $description = $_POST['description'];
+    $description = sanitizeString($_POST['description']);
     $id = $_SESSION['user']['id'];
 
     $fileExt = explode('.', $fileName);

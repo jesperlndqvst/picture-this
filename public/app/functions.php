@@ -58,6 +58,19 @@ if (!function_exists('sanitizeEmail')) {
         return filter_var(strtolower(trim($email)), FILTER_SANITIZE_EMAIL);
     }
 }
+if (!function_exists('sanitizeString')) {
+    /**
+     * Sanitizes string.
+     *
+     * @param string $string
+     *
+     * @return string
+     */
+    function sanitizeString($string)
+    {
+        return filter_var($string, FILTER_SANITIZE_STRING);
+    }
+}
 
 if (!function_exists('hashPassword')) {
     /**
