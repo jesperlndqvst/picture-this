@@ -1,5 +1,5 @@
 <?php require __DIR__ . '/views/header.php'; ?>
-<?php isLoggedIn() ?>
+<?php authenticateUser() ?>
 
 <article>
     <h1>Settings</h1>
@@ -11,6 +11,13 @@
         <?php endforeach; ?>
         <?php unset($_SESSION['errors']); ?>
     <?php endif; ?>
+
+    <img src="<?= $_SESSION['user']['avatar'] ?>" alt="avatar image">
+
+    <form action="app/users/settings.php" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit" name="submit">Upload</button>
+    </form>
 
     <form action="app/users/settings.php" method="post">
 

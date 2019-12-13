@@ -17,13 +17,13 @@ if (!function_exists('redirect')) {
     }
 }
 
-if (!function_exists('isLoggedIn')) {
+if (!function_exists('authenticateUser')) {
     /**
      * Redirect the user to the login page if the user has not logged in.
      *
      * @return void
      */
-    function isLoggedIn()
+    function authenticateUser()
     {
         if (!isset($_SESSION['user'])) {
             redirect('/login.php');
@@ -80,6 +80,8 @@ if (!function_exists('validateEmail')) {
      *
      * @param string $email
      *
+     * @param string $path
+     *
      * @return void
      */
     function validateEmail($email, $path)
@@ -90,3 +92,20 @@ if (!function_exists('validateEmail')) {
         }
     }
 }
+
+if (!function_exists('displayMessage')) {
+    /**
+     * Displays an message to the user.
+     *
+     * @param string $message
+     *
+     * @return void
+     */
+    function displayMessage($message)
+    {
+        $_SESSION['errors'][] = "${message}";
+    }
+}
+
+
+

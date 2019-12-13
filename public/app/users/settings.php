@@ -4,11 +4,60 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-if (isset($_POST['email'], $_POST['password'])) {
+
+$id = $_SESSION['user']['id'];
+
+
+// Change avatar image
+
+if (isset($_POST['submit'])) {
+    $file = $_FILES['file'];
+    $fileName = $file['name'];
+    $fileTmpName = $file['tmp_name'];
+    $fileSize = $file['size'];
+    $fileError = $file['error'];
+    $fileType = $file['type'];
+
+    $fileExt = explode('.', $fileName);
+    $fileActialExt = strtolower(end($fileExt));
+
+    $allowed =  ['jpg', 'jpeg', 'png', 'svg', 'pdf'];
+
+    if (in_array($fileActialExt, $allowed)) {
+        if ($fileError === 0) {
+            if ($fileSize < 300000) {
+                $fileNameNew = uniqid('', true) . "." . $fileActialExt;
+                $fileDestination = __DIR__ . '/../uploads/avatars/' . $fileNameNew;
+                move_uploaded_file($fileTmpName, $fileDestination);
+                displayMessage('Your image is uploaded!');
+                $avatar =  '../app/uploads/avatars/' . $fileNameNew;
+
+                // Updates user data
+                $query = 'UPDATE users SET avatar = :avatar WHERE id = :id';
+                $statement = $pdo->prepare($query);
+                $statement->bindParam(':avatar', $avatar, PDO::PARAM_STR);
+                $statement->bindParam(':id', $id, PDO::PARAM_INT);
+                $statement->execute();
+                $_SESSION['user']['avatar'] = $avatar;
+
+            } else {
+                displayMessage('Your file is too big!');
+            }
+        } else {
+            displayMessage('There was an error uploading your file!');
+        }
+    } else {
+        displayMessage('You cannot upload files of this type!');
+    }
+    redirect('/settings.php');
+}
+
+// Change email, usename, biography
+
+if (isset($_POST['email'], $_POST['password'], $_POST['biography'])) {
     $email = sanitizeEmail($_POST['email']);
     $password = hashPassword($_POST['password']);
     $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
-    $id = $_SESSION['user']['id'];
 
     validateEmail($email, '/settings.php');
 
@@ -20,7 +69,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        $_SESSION['errors'][] = 'Email is already taken';
+        displayMessage('Email is already taken');
         redirect('/settings.php');
     }
 
@@ -34,11 +83,10 @@ if (isset($_POST['email'], $_POST['password'])) {
     $statement->execute();
 
     if (!$statement) {
-        $_SESSION['errors'][] = 'Couldnt update settings!';
+        displayMessage('Couldnt update settings!');
     } else {
-        $_SESSION['errors'][] = 'Settings updated!';
+        displayMessage('Settings updated!');
     }
-
     redirect('/settings.php');
 }
 
