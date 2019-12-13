@@ -10,4 +10,7 @@
 
 </article>
 
+<a href="store.php">Add a new post</a>
+
+
 <?php require __DIR__ . '/views/footer.php'; ?>
