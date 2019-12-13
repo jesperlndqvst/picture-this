@@ -12,9 +12,9 @@
         <?php unset($_SESSION['errors']); ?>
     <?php endif; ?>
 
-    <img src="<?= $_SESSION['avatar']?>" alt="" srcset="" width="100%">
+    <img src="<?= $_SESSION['user']['avatar'] ?>" alt="avatar image">
 
-    <form action="app/users/upload.php" method="POST" enctype="multipart/form-data">
+    <form action="app/users/settings.php" method="POST" enctype="multipart/form-data">
             <input type="file" name="file">
             <button type="submit" name="submit">Upload</button>
     </form>
