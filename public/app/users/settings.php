@@ -16,7 +16,6 @@ if (isset($_POST['submit'])) {
     $fileTmpName = $file['tmp_name'];
     $fileSize = $file['size'];
     $fileError = $file['error'];
-    $fileType = $file['type'];
 
     $fileExt = explode('.', $fileName);
     $fileActialExt = strtolower(end($fileExt));
@@ -30,7 +29,7 @@ if (isset($_POST['submit'])) {
                 $fileDestination = __DIR__ . '/../uploads/avatars/' . $fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
                 displayMessage('Your image is uploaded!');
-                $avatar =  '../app/uploads/avatars/' . $fileNameNew;
+                $avatar = '../app/uploads/avatars/' . $fileNameNew;
 
                 // Updates user data
                 $query = 'UPDATE users SET avatar = :avatar WHERE id = :id';
