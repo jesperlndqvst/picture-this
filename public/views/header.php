@@ -16,5 +16,4 @@ require __DIR__ . '/../app/autoload.php';
 
 <body>
     <?php require __DIR__ . '/navigation.php'; ?>
-
     <div>
