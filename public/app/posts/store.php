@@ -34,7 +34,7 @@ if (isset($_POST['submit'], $_POST['description'])) {
                 VALUES (:media, :description, julianday('now'), :id)";
                 $statement = $pdo->prepare($query);
                 $statement->bindParam(':media', $media, PDO::PARAM_STR);
-                $statement->bindParam(':description', $media, PDO::PARAM_STR);
+                $statement->bindParam(':description', $description, PDO::PARAM_STR);
                 $statement->bindParam(':id', $id, PDO::PARAM_INT);
                 $statement->execute();
             } else {
