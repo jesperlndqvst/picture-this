@@ -12,7 +12,7 @@ if (isset($_POST['submit'], $_POST['description'])) {
     $fileTmpName = $file['tmp_name'];
     $fileSize = $file['size'];
     $fileError = $file['error'];
-    $description = $_POST['description'];
+    $description = sanitizeString($_POST['description']);
     $id = $_SESSION['user']['id'];
 
     $fileExt = explode('.', $fileName);
@@ -34,7 +34,7 @@ if (isset($_POST['submit'], $_POST['description'])) {
                 VALUES (:media, :description, julianday('now'), :id)";
                 $statement = $pdo->prepare($query);
                 $statement->bindParam(':media', $media, PDO::PARAM_STR);
-                $statement->bindParam(':description', $media, PDO::PARAM_STR);
+                $statement->bindParam(':description', $description, PDO::PARAM_STR);
                 $statement->bindParam(':id', $id, PDO::PARAM_INT);
                 $statement->execute();
             } else {

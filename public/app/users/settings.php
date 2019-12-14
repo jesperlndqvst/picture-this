@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
 if (isset($_POST['email'], $_POST['password'], $_POST['biography'])) {
     $email = sanitizeEmail($_POST['email']);
     $password = hashPassword($_POST['password']);
-    $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
+    $biography = sanitizeString($_POST['biography']);
 
     validateEmail($email, '/settings.php');
 

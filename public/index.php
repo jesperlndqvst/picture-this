@@ -5,12 +5,14 @@
     <p>This is the home page.</p>
 
     <?php if (isset($_SESSION['user'])) : ?>
-        <p>Welcome, <?php echo $_SESSION['user']['username']; ?>!</p>
+        <p>Welcome, <?= $_SESSION['user']['username']; ?>!</p>
+        <a href="store.php">Add a new post</a>
     <?php endif; ?>
-
 </article>
 
-<a href="store.php">Add a new post</a>
+<?php if (isset($_SESSION['user'])) : ?>
+    <?php require __DIR__ . '/views/feed.php'; ?>
+<?php endif; ?>
 
 
 <?php require __DIR__ . '/views/footer.php'; ?>
