@@ -4,18 +4,33 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-
-// Insert likes into database
-
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
     $user_id = $_SESSION['user']['id'];
 
-    $query = "INSERT INTO likes (post_id, user_id) VALUES (:id, :user_id)";
+    // Checks if user has already liked
+    $query = 'SELECT * FROM likes WHERE post_id = :id AND user_id = :user_id';
     $statement = $pdo->prepare($query);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $statement->execute();
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if($result) {
+        // Remove like
+        $query = "DELETE FROM likes WHERE post_id = :id AND user_id = :user_id";
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->execute();
+    } else {
+        // Insert like
+        $query = "INSERT INTO likes (post_id, user_id) VALUES (:id, :user_id)";
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->execute();
+    }
 
     // Count likes
     $query = 'SELECT COUNT(post_id) FROM likes
@@ -32,12 +47,6 @@ if (isset($_GET['id'])) {
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->bindParam(':likes', $likes, PDO::PARAM_INT);
     $statement->execute();
-
-    if (!$statement) {
-        displayMessage('Couldnt update settings!');
-    } else {
-        displayMessage('Settings updated!');
-    }
 }
 
 

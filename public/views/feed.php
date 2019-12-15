@@ -26,7 +26,6 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
         <p><?= $post['date(date)'] ?></p>
         <a href="#">Edit post</a>
 
-
             <form action="/../app/posts/update.php?id=<?= $post['id'] ?>" method="post">
                 <label for="description">Description</label>
                 <input type="text" name="description"  required>
@@ -37,7 +36,6 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <label for="likes">Likes: <?= $post['likes']; ?> </label>
                 <button type="submit" name="submit">Submit</button>
             </form>
-
 
     <?php endforeach; ?>
 <?php else : ?>
