@@ -4,19 +4,11 @@ $id = $_SESSION['user']['id'];
 
 //Posts
 
-$query = 'SELECT id, media, description, date(date), user_id FROM posts WHERE user_id = :id';
+$query = 'SELECT id, media, description, date(date), user_id, likes FROM posts WHERE user_id = :id';
 $statement = $pdo->prepare($query);
 $statement->bindParam(':id', $id, PDO::PARAM_INT);
 $statement->execute();
 $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-// Likes
-$query = 'SELECT * FROM likes';
-$statement = $pdo->prepare($query);
-$statement->execute();
-$likes = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-
 
 ?>
 
@@ -42,7 +34,7 @@ $likes = $statement->fetchAll(PDO::FETCH_ASSOC);
             </form>
 
             <form action="/../app/posts/likes.php?id=<?= $post['id'] ?>" method="post">
-                <label for="likes">Likes: <?= count($likes); ?></label>
+                <label for="likes">Likes: <?= $post['likes']; ?> </label>
                 <button type="submit" name="submit">Submit</button>
             </form>
 
