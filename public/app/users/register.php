@@ -43,6 +43,5 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     $statement->bindParam(':biography', $biography, PDO::PARAM_STR);
     $statement->bindParam(':avatar', $avatar, PDO::PARAM_STR);
     $statement->execute();
-    redirect('/login.php');
 }
 redirect('/login.php');
