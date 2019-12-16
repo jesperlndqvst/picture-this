@@ -2,8 +2,6 @@
 
 $id = $_SESSION['user']['id'];
 
-//Posts
-
 $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date(date), likes, username
 FROM posts
 INNER JOIN users ON posts.user_id = users.id
@@ -13,9 +11,8 @@ $statement = $pdo->prepare($query);
 $statement->bindParam(':id', $id, PDO::PARAM_INT);
 $statement->execute();
 $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-
 ?>
+
 
 <?php if (isset($_SESSION['errors'])) : ?>
     <?php foreach ($_SESSION['errors'] as $error) : ?>
@@ -23,6 +20,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
     <?php endforeach; ?>
     <?php unset($_SESSION['errors']); ?>
 <?php endif; ?>
+
 
 <?php if ($posts) : ?>
     <?php foreach ($posts as $post) : ?>
@@ -37,6 +35,10 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <label for="description">Description</label>
                 <input type="text" name="description" required>
                 <button type="submit" name="submit">Submit</button>
+            </form>
+            <form action="/../app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
+                <label for="delete">Delete</label>
+                <button type="submit" name="submit">Delete</button>
             </form>
         <?php endif; ?>
 
