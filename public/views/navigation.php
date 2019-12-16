@@ -26,8 +26,9 @@
             <?php endif; ?>
         </li>
 
-        <li>
-            <?php if ($_SESSION['user']) : ?>
+
+        <?php if (isset($_SESSION['user'])) : ?>
+            <li>
                 <form action="/app/users/search.php" method="get">
                     <label for="search">Search</label>
                     <input type="text" name="search" required>
@@ -38,11 +39,12 @@
             <?php if (isset($_SESSION['searchResults'])) : ?>
                 <?php $searchResults = $_SESSION['searchResults'] ?>
                 <?php foreach ($searchResults as $searchResult) : ?>
-                    <a href="#"><?= $searchResult['username'] ?></a>
+                    <a href="/../profile.php?id=<?= $searchResult['id'] ?>&username=<?= $searchResult['username'] ?>"><?= $searchResult['username'] ?></a>
                 <?php endforeach; ?>
                 <?php unset($_SESSION['searchResults']); ?>
-            <?php endif; ?>
-        </li>
+            </li>
+        <?php endif; ?>
+
 
         <?php if (isset($_SESSION['errors'])) : ?>
             <?php foreach ($_SESSION['errors'] as $error) : ?>

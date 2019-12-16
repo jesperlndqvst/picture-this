@@ -6,7 +6,7 @@ require __DIR__ . '/../autoload.php';
 
 if (isset($_GET['search'])) {
     $search = filter_var($_GET['search'], FILTER_SANITIZE_STRING);
-    $statement = $pdo->prepare('SELECT username FROM users WHERE username LIKE :search');
+    $statement = $pdo->prepare('SELECT username, id FROM users WHERE username LIKE :search');
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
@@ -18,9 +18,8 @@ if (isset($_GET['search'])) {
     if(!$searchResults) {
         displayMessage('No users found');
     }
-    
-    $_SESSION['searchResults'] = $searchResults;
 
+    $_SESSION['searchResults'] = $searchResults;
 }
 
 redirect('/');
