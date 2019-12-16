@@ -21,11 +21,35 @@
         <li>
             <?php if (!isset($_SESSION['user'])) : ?>
                 <a <?= $_SERVER['SCRIPT_NAME'] === '/register.php' ? 'active' : ''; ?>" href="register.php">Register</a>
-                 <?php else : ?>
+            <?php else : ?>
                 <a <?= $_SERVER['SCRIPT_NAME'] === '/settings.php' ? 'active' : ''; ?>" href="settings.php">Settings</a>
             <?php endif; ?>
         </li>
 
+        <li>
+            <?php if ($_SESSION['user']) : ?>
+                <form action="/app/users/search.php" method="get">
+                    <label for="search">Search</label>
+                    <input type="text" name="search" required>
+                    <button type="submit">Search</button>
+                </form>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['searchResults'])) : ?>
+                <?php $searchResults = $_SESSION['searchResults'] ?>
+                <?php foreach ($searchResults as $searchResult) : ?>
+                    <a href="#"><?= $searchResult['username'] ?></a>
+                <?php endforeach; ?>
+                <?php unset($_SESSION['searchResults']); ?>
+            <?php endif; ?>
+        </li>
+
+        <?php if (isset($_SESSION['errors'])) : ?>
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <p><?= $error ?></p>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']); ?>
+        <?php endif; ?>
 
     </ul>
 </nav>
