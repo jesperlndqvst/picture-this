@@ -8,7 +8,7 @@ $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date(date
 FROM posts
 INNER JOIN users ON posts.user_id = users.id
 INNER JOIN followers ON posts.user_id = followers.follow_id
-WHERE followers.user_id = :id OR posts.user_id = :id';
+WHERE followers.user_id = :id OR posts.user_id = :id ORDER BY posts.id DESC';
 $statement = $pdo->prepare($query);
 $statement->bindParam(':id', $id, PDO::PARAM_INT);
 $statement->execute();
