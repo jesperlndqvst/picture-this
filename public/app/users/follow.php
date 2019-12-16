@@ -17,7 +17,12 @@ if (isset($_GET['id'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        displayMessage('You are already following that user');
+        displayMessage('User Unfollowed');
+        $query = 'DELETE FROM followers WHERE user_id = :userId AND follow_id = :followId';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $statement->bindParam(':followId', $followId, PDO::PARAM_INT);
+        $statement->execute();
         redirect('/../../profile.php?id=' . $_GET['id'] . '&username=' . $_GET['username']);
     }
 
