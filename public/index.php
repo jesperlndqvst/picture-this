@@ -18,3 +18,6 @@
 
 
 <?php require __DIR__ . '/views/footer.php'; ?>
+
+<script src="assets/scripts/main.js"></script>
+
