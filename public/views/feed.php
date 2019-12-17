@@ -1,6 +1,7 @@
 <?php
 
 $id = $_SESSION['user']['id'];
+$user = getUserById($id, $pdo);
 
 $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date(date), likes, username
 FROM posts
@@ -11,6 +12,8 @@ $statement = $pdo->prepare($query);
 $statement->bindParam(':id', $id, PDO::PARAM_INT);
 $statement->execute();
 $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
 ?>
 
 
