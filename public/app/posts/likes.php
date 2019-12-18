@@ -16,7 +16,6 @@ if (isset($_POST['id'])) {
     $statement->execute();
     $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-
     if($result) {
         // Remove like
         $query = "DELETE FROM likes WHERE post_id = :id AND user_id = :user_id";
@@ -55,7 +54,7 @@ if (isset($_POST['id'])) {
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
     $likes = $statement->fetch(PDO::FETCH_ASSOC);
-    
+
     header('Content-Type: application/json');
     echo json_encode($likes);
 }
