@@ -46,8 +46,8 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
 
         <form class="form form--likes" action="/../app/posts/likes.php" method="post">
-            <label class="test" for="likes">Likes: <?= $post['likes']; ?> </label>
-            <input type="hidden" name="id" value=" <?=$post['id'] ?>">
+            <label for="likes"><?= $post['likes'] ?></label>
+            <input type="hidden" name="id" value=" <?= $post['id'] ?>">
             <button type="submit" name="submit">Submit</button>
         </form>
 

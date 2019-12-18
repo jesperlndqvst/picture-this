@@ -6,7 +6,7 @@ require __DIR__ . '/../autoload.php';
 
 
 if (isset($_POST['id'])) {
-    $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+    $id = (int) filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
     $user_id = $_SESSION['user']['id'];
 
     // Checks if user has already liked
@@ -56,4 +56,4 @@ if (isset($_POST['id'])) {
 }
 
 
-redirect('/');
+// redirect('/');
