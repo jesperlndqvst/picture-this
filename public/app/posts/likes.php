@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-if (isset($_GET['id'])) {
-    $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+
+if (isset($_POST['id'])) {
+    $id = (int) filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
     $user_id = $_SESSION['user']['id'];
- 
+
     // Checks if user has already liked
     $query = 'SELECT * FROM likes WHERE post_id = :id AND user_id = :user_id';
     $statement = $pdo->prepare($query);
@@ -48,7 +49,11 @@ if (isset($_GET['id'])) {
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->bindParam(':likes', $likes, PDO::PARAM_INT);
     $statement->execute();
+
+
+    header('Content-Type: application/json');
+    echo json_encode($likes);
 }
 
 
-redirect('/');
+// redirect('/');

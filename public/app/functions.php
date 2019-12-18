@@ -120,5 +120,27 @@ if (!function_exists('displayMessage')) {
     }
 }
 
+if (!function_exists('getUserById')) {
+    /**
+     * Gets user information from database
+     *
+     * @param string $id
+     *
+     * @param PDO $pdo
+     *
+     * @return array
+     */
+    function getUserById(string $id, PDO $pdo): array
+    {
+        $query = 'SELECT * FROM users WHERE id = :id';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-
+        if ($user) {
+            return $user;
+        }
+        return $user = [];
+    }
+}
