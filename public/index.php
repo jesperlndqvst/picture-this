@@ -46,5 +46,4 @@
 <?php endforeach; ?>
 
 
-
 <?php require __DIR__ . '/views/footer.php'; ?>

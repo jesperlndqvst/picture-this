@@ -14,17 +14,15 @@
         <div>
             <label for="email">Email</label>
             <input type="text" name="email" id="email" required>
-            <small>Please provide the your email address.</small>
         </div>
-
         <div>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" required>
-            <small>Please provide the your password (passphrase).</small>
         </div>
-
         <button type="submit">Login</button>
     </form>
+
+    <a href="register.php">Don't have an account? Sign up.</a>
 </article>
 
 <?php require __DIR__ . '/views/footer.php'; ?> 
