@@ -1,12 +1,14 @@
 <?php require __DIR__ . '/views/header.php'; ?>
+<?php require __DIR__ . '/views/navigation.php'; ?>
 
 <?php authenticateUser() ?>
+<?php $user = getUserById($_SESSION['user']['id'], $pdo) ?>
 <?php $posts = getPosts($pdo) ?>
 
 <?php if (!$posts) : ?>
     <article>
         <h1><?= $config['title']; ?></h1>
-        <p>Welcome, <?= $_SESSION['user']['username']; ?>!</p>
+        <p>Welcome, <?= $user['username'] ?>!</p>
         <a href="store.php">Add a new post</a>
     </article>
 <?php endif; ?>
@@ -24,14 +26,14 @@
     <p><?= $post['description'] ?></p>
     <p><?= $post['date(date)'] ?></p>
 
-    <?php if ($post['user_id'] === $_SESSION['user']['id']) : ?>
+    <?php if ($post['user_id'] === $user['id']) : ?>
         <a href="#">Edit post</a>
-        <form action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">
+        <form class="form form-update" action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">
             <label for="description">Description</label>
             <input type="text" name="description" required>
             <button type="submit" name="submit">Submit</button>
         </form>
-        <form action="/app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
+        <form class="form form--delete" action="/app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
             <label for="delete">Delete</label>
             <button type="submit" name="submit">Delete</button>
         </form>
