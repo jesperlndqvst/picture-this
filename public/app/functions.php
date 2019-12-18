@@ -108,7 +108,7 @@ if (!function_exists('validateEmail')) {
 
 if (!function_exists('displayMessage')) {
     /**
-     * Displays an message to the user.
+     * Displays message.
      *
      * @param string $message
      *
@@ -142,5 +142,28 @@ if (!function_exists('getUserById')) {
             return $user;
         }
         return $user = [];
+    }
+}
+if (!function_exists('getPosts')) {
+    /**
+     * Gets posts from database
+     *
+     * @param PDO $pdo
+     *
+     * @return array
+     */
+    function getPosts(PDO $pdo): array
+    {
+        $id = $_SESSION['user']['id'];
+        $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date(date), likes, username
+        FROM posts
+        INNER JOIN users ON posts.user_id = users.id
+        INNER JOIN followers ON posts.user_id = followers.follow_id
+        WHERE followers.user_id = :id OR posts.user_id = :id ORDER BY posts.id DESC';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
     }
 }

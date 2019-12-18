@@ -1,8 +1,7 @@
 <?php require __DIR__ . '/views/header.php'; ?>
+<?php require __DIR__ . '/views/navigation.php'; ?>
 
 <?php authenticateUser() ?>
-
-
 
 <?php if (isset($_GET['id'], $_GET['username'])) : ?>
     <article>
@@ -15,6 +14,9 @@
         <button type="submit" name="submit">Follow</button>
     </form>
 <?php endif; ?>
+
+
+<a href="/settings.php">Settings</a>
 
 <?php if (isset($_SESSION['errors'])) : ?>
     <?php foreach ($_SESSION['errors'] as $error) : ?>

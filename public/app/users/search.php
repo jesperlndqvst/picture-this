@@ -22,4 +22,4 @@ if (isset($_GET['search'])) {
     $_SESSION['searchResults'] = $searchResults;
 }
 
-redirect('/');
+redirect('/../search.php');
