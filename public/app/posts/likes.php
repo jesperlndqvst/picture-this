@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-
 if (isset($_POST['id'])) {
     $id = (int) filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
     $user_id = $_SESSION['user']['id'];
@@ -50,10 +49,15 @@ if (isset($_POST['id'])) {
     $statement->bindParam(':likes', $likes, PDO::PARAM_INT);
     $statement->execute();
 
-
+    // Recounts the likes after update
+    $query = 'SELECT likes FROM posts WHERE id = :id';
+    $statement = $pdo->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+    $likes = $statement->fetch(PDO::FETCH_ASSOC);
+    
     header('Content-Type: application/json');
     echo json_encode($likes);
 }
 
 
-// redirect('/');
