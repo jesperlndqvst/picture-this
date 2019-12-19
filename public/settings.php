@@ -15,7 +15,7 @@
         <?php unset($_SESSION['errors']); ?>
     <?php endif; ?>
 
-    <img src="<?= $user['avatar'] ?>" alt="avatar image">
+    <img src="app/uploads/avatars/<?= $user['avatar'] ?>" alt="avatar image">
 
     <form action="app/users/settings.php" method="post" enctype="multipart/form-data">
         <input type="file" name="file">

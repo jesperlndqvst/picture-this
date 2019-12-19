@@ -3,7 +3,6 @@
 <article>
     <h1>Register</h1>
 
-
     <form action="app/users/register.php" method="post">
 
         <?php if (isset($_SESSION['errors'])) : ?>
