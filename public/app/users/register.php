@@ -9,7 +9,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     $email = sanitizeEmail($_POST['email']);
     $password = hashPassword($_POST['password']);
     $biography = 'No bigraphy set';
-    $avatar = '../app/uploads/avatars/undefined.svg';
+    $avatar = 'undefined.svg';
 
     validateEmail($email, '/register.php');
 

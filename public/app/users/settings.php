@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-
 $id = $_SESSION['user']['id'];
-
 
 // Change avatar image
 
@@ -29,7 +27,7 @@ if (isset($_POST['submit'])) {
                 $fileDestination = __DIR__ . '/../uploads/avatars/' . $fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
                 displayMessage('Your image is uploaded!');
-                $avatar = '../app/uploads/avatars/' . $fileNameNew;
+                $avatar = $fileNameNew;
 
                 // Updates user data
                 $query = 'UPDATE users SET avatar = :avatar WHERE id = :id';
@@ -37,7 +35,6 @@ if (isset($_POST['submit'])) {
                 $statement->bindParam(':avatar', $avatar, PDO::PARAM_STR);
                 $statement->bindParam(':id', $id, PDO::PARAM_INT);
                 $statement->execute();
-                $_SESSION['user']['avatar'] = $avatar;
 
             } else {
                 displayMessage('Your file is too big!');
