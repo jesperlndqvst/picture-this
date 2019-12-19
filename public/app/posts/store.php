@@ -27,7 +27,7 @@ if (isset($_POST['submit'], $_POST['description'])) {
                 $fileDestination = __DIR__ . '/../uploads/posts/' . $fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
                 displayMessage('Your file is uploaded!');
-                $media = '../app/uploads/posts/' . $fileNameNew;
+                $media =  $fileNameNew;
 
                 // Updates user data
                 $query = "INSERT INTO posts (media, description, date, user_id)

@@ -21,7 +21,7 @@
 <?php endif; ?>
 
 <?php foreach ($posts as $post) : ?>
-    <img src="<?= $post['media'] ?>" alt="">
+    <img src="app/uploads/posts/<?= $post['media'] ?>" alt="">
     <p><?= $post['username'] ?></p>
     <p><?= $post['description'] ?></p>
     <p><?= $post['date(date)'] ?></p>
