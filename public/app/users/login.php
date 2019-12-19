@@ -19,10 +19,8 @@ if (isset($_POST['email'], $_POST['password'])) {
         redirect('/login.php');
     }
     if (password_verify($_POST['password'], $user['password'])) {
-        unset($user['password']);
-        $_SESSION['user'] = $user;
-
-
+        $_SESSION['user']['id'] = $user['id'];
+        
         // Checks if user is in the followers table
         $id = $user['id'];
         $query = 'SELECT user_id FROM followers WHERE user_id = :id AND follow_id = :id';
