@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-$id = $_SESSION['user']['id'];
+$user = getUserById($_SESSION['user']['id'], $pdo);
+$id = $user['id'];
 
 // Change avatar image
 
@@ -32,9 +33,9 @@ if (isset($_POST['submit'])) {
                 $statement->bindParam(':standardAvatar', $standardAvatar, PDO::PARAM_STR);
                 $statement->execute();
                 $user = $statement->fetch(PDO::FETCH_ASSOC);
-               
+
                 if ($user) {
-                    unlink ('../uploads/avatars/' . $user['avatar']);
+                    unlink('../uploads/avatars/' . $user['avatar']);
                 }
 
                 // Uploads new file
@@ -50,7 +51,6 @@ if (isset($_POST['submit'])) {
                 $statement->bindParam(':avatar', $avatar, PDO::PARAM_STR);
                 $statement->bindParam(':id', $id, PDO::PARAM_INT);
                 $statement->execute();
-
             } else {
                 displayMessage('Your file is too big!');
             }
@@ -63,19 +63,36 @@ if (isset($_POST['submit'])) {
     redirect('/settings.php');
 }
 
-// Change email, usename, biography
+// Change username, email and biography
 
-if (isset($_POST['email'], $_POST['password'], $_POST['biography'])) {
+if (isset($_POST['username'], $_POST['email'], $_POST['biography'])) {
+    $username = sanitizeUsername($_POST['username']);
     $email = sanitizeEmail($_POST['email']);
-    $password = hashPassword($_POST['password']);
     $biography = sanitizeString($_POST['biography']);
+    $currentUsername = $user['username'];
+    $currentEmail = $user['email'];
 
     validateEmail($email, '/settings.php');
 
+    // If username is already taken
+    $query = 'SELECT username FROM users
+    WHERE username = :username AND username != :currentUsername';
+    $statement = $pdo->prepare($query);
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->bindParam(':currentUsername', $currentUsername, PDO::PARAM_STR);
+    $statement->execute();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
+        displayMessage('Username is already taken');
+        redirect('/settings.php');
+    }
     // If email is already taken
-    $query = 'SELECT email FROM users WHERE email = :email';
+    $query = 'SELECT email FROM users
+    WHERE email = :email AND email != :currentEmail';
     $statement = $pdo->prepare($query);
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->bindParam(':currentEmail', $currentEmail, PDO::PARAM_STR);
     $statement->execute();
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -85,10 +102,10 @@ if (isset($_POST['email'], $_POST['password'], $_POST['biography'])) {
     }
 
     // Updates user data
-    $query = 'UPDATE users SET email = :email, password = :password, biography = :biography WHERE id = :id';
+    $query = 'UPDATE users SET username = :username, email = :email, biography = :biography WHERE id = :id';
     $statement = $pdo->prepare($query);
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
-    $statement->bindParam(':password', $password, PDO::PARAM_STR);
     $statement->bindParam(':biography', $biography, PDO::PARAM_STR);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
@@ -98,6 +115,36 @@ if (isset($_POST['email'], $_POST['password'], $_POST['biography'])) {
     } else {
         displayMessage('Settings updated!');
     }
+    redirect('/settings.php');
+}
+
+// Change password
+if (isset($_POST['password'], $_POST['new-password'], $_POST['repeat-password'])) {
+    $password = $_POST['password'];
+    $newPassword = $_POST['new-password'];
+    $repeatPassword = $_POST['repeat-password'];
+
+    // If passwords doesn't match
+    if ($newPassword !== $repeatPassword) {
+        displayMessage("Passwords doesn't match!");
+        redirect('/settings.php');
+    }
+
+    if (password_verify($password, $user['password'])) {
+        // Updates password
+        $newPassword = hashPassword($_POST['new-password']);
+        $query = 'UPDATE users SET password = :newPassword WHERE id = :id';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':newPassword', $newPassword, PDO::PARAM_STR);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        displayMessage("Password updated");
+        redirect('/settings.php');
+    } else {
+        displayMessage("Wrong password!");
+        redirect('/settings.php');
+    }
+
     redirect('/settings.php');
 }
 
