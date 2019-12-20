@@ -20,23 +20,6 @@ if (isset($_POST['email'], $_POST['password'])) {
     }
     if (password_verify($_POST['password'], $user['password'])) {
         $_SESSION['user']['id'] = $user['id'];
-        
-        // Checks if user is in the followers table
-        $id = $user['id'];
-        $query = 'SELECT user_id FROM followers WHERE user_id = :id AND follow_id = :id';
-        $statement = $pdo->prepare($query);
-        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-        $statement->execute();
-        $user = $statement->fetch(PDO::FETCH_ASSOC);
-
-        if (!$user) {
-            // Insert user into followers table
-            $query = 'INSERT INTO followers (user_id, follow_id)
-            VALUES (:id, :id)';
-            $statement = $pdo->prepare($query);
-            $statement->bindParam(':id', $id, PDO::PARAM_INT);
-            $statement->execute();
-        }
     }
 }
 

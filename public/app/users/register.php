@@ -43,5 +43,22 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     $statement->bindParam(':biography', $biography, PDO::PARAM_STR);
     $statement->bindParam(':avatar', $avatar, PDO::PARAM_STR);
     $statement->execute();
+
+    // Gets user by email
+    $query = 'SELECT * FROM users WHERE email = :email';
+    $statement = $pdo->prepare($query);
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->execute();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    $_SESSION['user']['id'] = $user['id'];
+
+    // Insert user into followers table
+    $id = $user['id'];
+    $query = 'INSERT INTO followers (user_id, follow_id)
+    VALUES (:id, :id)';
+    $statement = $pdo->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
 }
-redirect('/login.php');
+
+redirect('/');
