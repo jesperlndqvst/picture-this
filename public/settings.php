@@ -19,7 +19,7 @@
 <img src="app/uploads/avatars/<?= $user['avatar'] ?>" alt="avatar image">
 
 
-<form action="app/users/settings.php" method="post" enctype="multipart/form-data">
+<form action="app/users/avatar.php" method="post" enctype="multipart/form-data">
     <input type="file" name="file">
     <button type="submit" name="submit">Upload</button>
 </form>
@@ -40,7 +40,7 @@
     <button type="submit">Submit</button>
 </form>
 
-<form action="app/users/settings.php" method="post">
+<form action="app/users/password.php" method="post">
     <div>
         <label for="password">Current password</label>
         <input type="password" name="password" id="password" required>
