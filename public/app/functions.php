@@ -167,3 +167,24 @@ if (!function_exists('getPosts')) {
         return $posts;
     }
 }
+if (!function_exists('getLikes')) {
+    /**
+     * Gets likes from database
+     *
+     * @param PDO $pdo
+     *
+     * @return array
+     */
+    function getLikes(PDO $pdo): array
+    {
+        $id = $_SESSION['user']['id'];
+        $query = 'SELECT DISTINCT likes.post_id, likes.user_id FROM likes
+        INNER JOIN followers ON likes.user_id = followers.user_id
+        WHERE likes.user_id = :id';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $likes = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $likes;
+    }
+}
