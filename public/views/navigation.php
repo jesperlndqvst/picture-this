@@ -1,3 +1,4 @@
+<?php authenticateUser() ?>
 <?php $user = getUserById($_SESSION['user']['id'], $pdo) ?>
 
 <nav>
