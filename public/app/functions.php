@@ -171,26 +171,22 @@ if (!function_exists('isLikedByUser')) {
     /**
      * Gets likes from database
      *
-     * @param string $postId
+     * @param int $postId
      *
      * @param PDO $pdo
      *
      * @return bool
      */
-    function isLikedByUser(string $postId, PDO $pdo): bool
+    function isLikedByUser(int $postId, PDO $pdo): bool
     {
         $id = $_SESSION['user']['id'];
         $query = 'SELECT post_id, user_id FROM likes
         WHERE user_id = :id AND post_id = :postId';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
-        $statement->bindParam(':postId', $postId, PDO::PARAM_STR);
+        $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
         $statement->execute();
         $like = $statement->fetch(PDO::FETCH_ASSOC);
-        if ($like) {
-            return true;
-        } else {
-            return false;
-        }
+        return $like ? true : false;
     }
 }

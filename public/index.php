@@ -44,7 +44,7 @@
         <label for="likes"><?= $post['likes'] ?></label>
         <input type="hidden" name="id" value=" <?= $post['id'] ?>">
         <button type="submit" name="submit">
-            <i class="<?= isLikedByUser($post['id'], $pdo) ? "fas fa-heart" : "far fa-heart"  ?>"></i>
+            <i class="<?= isLikedByUser((int) $post['id'], $pdo) ? "fas fa-heart" : "far fa-heart"  ?>"></i>
         </button>
     </form>
 
