@@ -5,6 +5,7 @@
 <?php $user = getUserById($_SESSION['user']['id'], $pdo) ?>
 <?php $posts = getPosts($pdo) ?>
 
+
 <?php if (!$posts) : ?>
     <article>
         <h1><?= $config['title']; ?></h1>
@@ -42,7 +43,9 @@
     <form class="form form--likes" action="/app/posts/likes.php" method="post">
         <label for="likes"><?= $post['likes'] ?></label>
         <input type="hidden" name="id" value=" <?= $post['id'] ?>">
-        <button type="submit" name="submit">Submit</button>
+        <button type="submit" name="submit">
+            <i class="<?= isLikedByUser((int) $post['id'], $pdo) ? "fas fa-heart" : "far fa-heart"  ?>"></i>
+        </button>
     </form>
 
 <?php endforeach; ?>

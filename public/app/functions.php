@@ -167,3 +167,26 @@ if (!function_exists('getPosts')) {
         return $posts;
     }
 }
+if (!function_exists('isLikedByUser')) {
+    /**
+     * Gets likes from database
+     *
+     * @param int $postId
+     *
+     * @param PDO $pdo
+     *
+     * @return bool
+     */
+    function isLikedByUser(int $postId, PDO $pdo): bool
+    {
+        $id = $_SESSION['user']['id'];
+        $query = 'SELECT post_id, user_id FROM likes
+        WHERE user_id = :id AND post_id = :postId';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
+        $statement->execute();
+        $like = $statement->fetch(PDO::FETCH_ASSOC);
+        return $like ? true : false;
+    }
+}
