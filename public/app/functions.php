@@ -190,3 +190,25 @@ if (!function_exists('isLikedByUser')) {
         return $like ? true : false;
     }
 }
+if (!function_exists('getComments')) {
+    /**
+     * Gets comments from database
+     *
+     * @param int $postId
+     *
+     * @param PDO $pdo
+     *
+     * @return array
+     */
+    function getComments(int $postId, PDO $pdo): array
+    {
+        $query = 'SELECT username, comment, avatar
+        FROM comments INNER JOIN users ON comments.user_id = users.id
+        WHERE post_id = :postId';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
+        $statement->execute();
+        $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $comments;
+    }
+}
