@@ -48,23 +48,7 @@
         </button>
     </form>
 
-    <a href="#">Comment...</a>
-    <form class="form form-comments" action="/app/posts/comments.php?id=<?= $post['id'] ?>" method="post">
-        <label for="comment">Comments...</label>
-        <input type="text" name="comment" required>
-        <button type="submit" name="submit">Submit</button>
-        <?php $comments = getComments($post['id'], $pdo) ?>
-        <?php foreach ($comments as $comment) : ?>
-            <div class="comments">
-                <img src="app/uploads/avatars/<?= $comment['avatar'] ?>" alt="User avatar">
-                <p>
-                    <span><?= $comment['username'] ?></span>
-                    <?= $comment['comment'] ?>
-                </p>
-            </div>
-        <?php endforeach; ?>
-
-    </form>
+    <a href="comments.php?id=<?= $post['id'] ?>">Comment...</a>
 
 
 <?php endforeach; ?>

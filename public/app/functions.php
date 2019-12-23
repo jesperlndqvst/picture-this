@@ -202,7 +202,7 @@ if (!function_exists('getComments')) {
      */
     function getComments(int $postId, PDO $pdo): array
     {
-        $query = 'SELECT username, comment, avatar
+        $query = 'SELECT username, comment, avatar, date(date) AS date
         FROM comments INNER JOIN users ON comments.user_id = users.id
         WHERE post_id = :postId';
         $statement = $pdo->prepare($query);
