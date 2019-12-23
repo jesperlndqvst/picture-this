@@ -48,6 +48,9 @@
         </button>
     </form>
 
+    <a href="comments.php?id=<?= $post['id'] ?>">Comment...</a>
+
+
 <?php endforeach; ?>
 
 

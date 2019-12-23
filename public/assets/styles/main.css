@@ -3,3 +3,14 @@ img {
     width: 300px;
 }
 
+
+
+.comments img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+.comments span {
+    font-weight: bold;
+}
