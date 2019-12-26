@@ -5,11 +5,37 @@
 }
 
 :root {
-    --padding-default: 2rem;
-    --color-grey: #C4C4C4;
+    --color-black: #262626;
+    --color-light-grey: #fafafa;
+    --color-dark-grey: #C4C4C4;
 }
 
 body {
     width: 100vw;
+    font-family: sans-serif;
+    color: var(--color-black);
 }
 
+a {
+    text-decoration: none;
+}
+
+.container {
+    padding: 1rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.7rem 0;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid var(--color-dark-grey);
+    border-radius: 0.4rem;
+    background-color: var(--color-light-grey);
+}

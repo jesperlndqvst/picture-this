@@ -1,6 +1,16 @@
-.login-container {
+.container--login {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 var(--padding-default);
+}
+
+.form--login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.input--login {
+    margin: 2rem 0;
 }
