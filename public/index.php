@@ -22,36 +22,35 @@
 <?php endif; ?>
 
 <?php foreach ($posts as $post) : ?>
-    <img src="app/uploads/posts/<?= $post['media'] ?>" alt="post image">
-    <p><?= $post['username'] ?></p>
-    <p><?= $post['description'] ?></p>
-    <p><?= $post['date(date)'] ?></p>
+    <div class="post">
+        <img class="post__img" src="app/uploads/posts/<?= $post['media'] ?>" alt="post image">
+        <p><?= $post['username'] ?></p>
+        <p><?= $post['description'] ?></p>
+        <p><?= $post['date(date)'] ?></p>
 
-    <?php if ($post['user_id'] === $user['id']) : ?>
-        <a href="#">Edit post</a>
-        <form class="form form-update" action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">
-            <label for="description">Description</label>
-            <input type="text" name="description" required>
-            <button type="submit" name="submit">Submit</button>
+        <?php if ($post['user_id'] === $user['id']) : ?>
+            <a href="#">Edit post</a>
+            <form class="form form--update" action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">
+                <label for="description">Description</label>
+                <input type="text" name="description" required>
+                <button type="submit" name="submit">Submit</button>
+            </form>
+            <form class="form form--delete" action="/app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
+                <label for="delete">Delete</label>
+                <button type="submit" name="submit">Delete</button>
+            </form>
+        <?php endif; ?>
+
+        <form class="form form--likes" action="/app/posts/likes.php" method="post">
+            <label for="likes"><?= $post['likes'] ?></label>
+            <input type="hidden" name="id" value=" <?= $post['id'] ?>">
+            <button type="submit" name="submit">
+                <i class="<?= isLikedByUser((int) $post['id'], $pdo) ? "fas fa-heart" : "far fa-heart"  ?>"></i>
+            </button>
         </form>
-        <form class="form form--delete" action="/app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
-            <label for="delete">Delete</label>
-            <button type="submit" name="submit">Delete</button>
-        </form>
-    <?php endif; ?>
 
-    <form class="form form--likes" action="/app/posts/likes.php" method="post">
-        <label for="likes"><?= $post['likes'] ?></label>
-        <input type="hidden" name="id" value=" <?= $post['id'] ?>">
-        <button type="submit" name="submit">
-            <i class="<?= isLikedByUser((int) $post['id'], $pdo) ? "fas fa-heart" : "far fa-heart"  ?>"></i>
-        </button>
-    </form>
-
-    <a href="comments.php?id=<?= $post['id'] ?>">Comment...</a>
-
-
+        <a href="comments.php?id=<?= $post['id'] ?>">Comment...</a>
+    </div>
 <?php endforeach; ?>
-
 
 <?php require __DIR__ . '/views/footer.php'; ?>
