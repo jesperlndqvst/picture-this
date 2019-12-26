@@ -1,0 +1,9 @@
+.form--comments img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+.form--comments span {
+    font-weight: bold;
+}

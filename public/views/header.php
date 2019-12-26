@@ -12,6 +12,9 @@ require __DIR__ . '/../app/autoload.php';
     <title><?= $config['title']; ?></title>
 
     <link rel="stylesheet" href="/assets/styles/main.css">
+    <link rel="stylesheet" href="/assets/styles/login.css">
+    <link rel="stylesheet" href="/assets/styles/index.css">
+    <link rel="stylesheet" href="/assets/styles/comments.css">
     <script src="https://kit.fontawesome.com/4d50ed984c.js" crossorigin="anonymous"></script>
 
 </head>

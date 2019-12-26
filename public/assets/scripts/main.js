@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 // Updates like number without page reload
 
 const formLikes = document.querySelectorAll('.form--likes');
