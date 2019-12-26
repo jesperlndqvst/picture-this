@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
-<div class="login-container">
+<div class="container container--login">
     <h1><?= $config['title']; ?></h1>
 
     <?php if (isset($_SESSION['errors'])) : ?>
