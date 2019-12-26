@@ -12,7 +12,7 @@
 
     <form class="form form--login" action="app/users/login.php" method="post">
         <input class="input input--login" type="email" name="email" id="email" placeholder="Email" value autocomplete="off" required>
-        <input class="input input--login" type="text" name="password" id="password" placeholder="Password" value autocomplete="off" required>
+        <input class="input input--login" type="password" name="password" id="password" placeholder="Password" value autocomplete="off" required>
         <button class="btn btn--login" type="submit">Log in</button>
     </form>
 
