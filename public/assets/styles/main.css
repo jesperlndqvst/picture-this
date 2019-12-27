@@ -1,13 +1,18 @@
+/* Css Reset */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Custom Properties */
+
 :root {
     --color-black: #262626;
     --color-light-grey: #fafafa;
     --color-dark-grey: #C4C4C4;
+    --padding-container: 1rem;
 }
 
 body {
@@ -18,10 +23,15 @@ body {
 
 a {
     text-decoration: none;
+    color: var(--color-black);
 }
 
-.container {
-    padding: 1rem;
+.heading-l {
+    font-size: 2rem;
+}
+
+.text-bold {
+    font-weight: bold;
 }
 
 .btn {
@@ -32,10 +42,12 @@ a {
     cursor: pointer;
 }
 
-.input {
+.form__input {
     width: 100%;
     padding: 0.7rem;
     border: 1px solid var(--color-dark-grey);
     border-radius: 0.4rem;
     background-color: var(--color-light-grey);
 }
+
+
