@@ -18,7 +18,7 @@
                 <button class="btn btn--lg" type="submit">Register</button>
             </form>
 
-            <a class="login__signup-link" href="login.php">Have an account? <span class="text-bold">Log in.</span></a>
+            <a class="register__login-link" href="login.php">Have an account? <span class="text-bold">Log in.</span></a>
 </article>
 
 <?php require __DIR__ . '/views/footer.php'; ?> 
