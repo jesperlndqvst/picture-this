@@ -1,7 +1,7 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
-<div class="container container--login">
-    <h1><?= $config['title']; ?></h1>
+<article class="login">
+    <h1 class="heading heading--lg"><?= $config['title']; ?></h1>
 
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
@@ -11,12 +11,12 @@
     <?php endif; ?>
 
     <form class="form form--login" action="app/users/login.php" method="post">
-        <input class="input input--login" type="email" name="email" id="email" placeholder="Email" value autocomplete="off" required>
-        <input class="input input--login" type="text" name="password" id="password" placeholder="Password" value autocomplete="off" required>
-        <button class="btn btn--login" type="submit">Log in</button>
+        <input class="form__input" type="email" name="email" id="email" placeholder="Email" value autocomplete="off" required>
+        <input class="form__input" type="password" name="password" id="password" placeholder="Password" value autocomplete="off" required>
+        <button class="btn btn--lg" type="submit">Log in</button>
     </form>
 
-    <a href="register.php">Don't have an account? Sign up.</a>
-</div>
+    <a class="login__signup-link" href="register.php">Don't have an account yet? <span class="text-bold">Sign up.</span></a>
+</article>
 
 <?php require __DIR__ . '/views/footer.php'; ?>
