@@ -1,3 +1,22 @@
+
+.post__user-info {
+    display: flex;
+    align-items: center;
+}
+
+.post__user-info img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.post__user-info p {
+    font-weight: bold;
+    padding-left: 1rem;
+}
+
 .post__img {
     display: block;
     width: 100%;
