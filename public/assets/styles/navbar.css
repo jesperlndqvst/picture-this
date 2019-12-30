@@ -1,0 +1,24 @@
+.navbar {
+    display: flex;
+    width: 100vw;
+    padding: var(--padding-container);
+    justify-content: space-between;
+    background-color: var(--color-light-grey);
+    border-bottom: 1px solid var(--color-dark-grey);
+}
+
+.navbar__heading {
+    white-space: nowrap;
+}
+
+.navbar__list {
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.navbar__list img {
+    height: 100%;
+    display: block;
+}
