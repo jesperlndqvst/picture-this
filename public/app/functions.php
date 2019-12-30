@@ -155,7 +155,7 @@ if (!function_exists('getPosts')) {
     function getPosts(PDO $pdo): array
     {
         $id = $_SESSION['user']['id'];
-        $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date(date), likes, username
+        $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date(date), likes, username, avatar
         FROM posts
         INNER JOIN users ON posts.user_id = users.id
         INNER JOIN followers ON posts.user_id = followers.follow_id
