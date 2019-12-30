@@ -1,15 +1,26 @@
-
 .post__user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem var(--padding-container);
+}
+
+.post__user-info div {
     display: flex;
     align-items: center;
 }
 
-.post__user-info img {
+.post__user-info div > img {
     width: 70px;
     height: 70px;
     object-fit: cover;
     object-position: center;
     border-radius: 50%;
+}
+
+.post__user-info a > img {
+    width: 40px;
+    display: block;
 }
 
 .post__user-info p {
@@ -20,4 +31,12 @@
 .post__img {
     display: block;
     width: 100%;
+}
+
+.post__post-info {
+    padding: 0.5rem var(--padding-container);
+}
+
+.hidden {
+    display: none;
 }
