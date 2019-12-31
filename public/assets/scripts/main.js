@@ -36,7 +36,6 @@ const editPosts = document.querySelectorAll('.user-info__edit');
 
 editPosts.forEach(post => {
     post.addEventListener('click', event => {
-        event.preventDefault();
         const currentPost = post.parentElement.parentElement;
         const hiddenForm = currentPost.querySelector('.post-info__edit');
         hiddenForm.classList.toggle('hidden');
