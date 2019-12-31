@@ -30,7 +30,7 @@
                     <p><?= $post['username'] ?></p>
                 </div>
                 <?php if ($post['user_id'] === $user['id']) : ?>
-                    <a class="user-info__edit" href="#"><img src="assets/images/edit.svg" alt="edit post"></a>
+                    <a class="user-info__edit"><img src="assets/images/edit.svg" alt="edit post"></a>
                 <?php endif; ?>
             </div>
 

@@ -21,6 +21,7 @@
 .post__user-info a > img {
     width: 40px;
     display: block;
+    cursor: pointer;
 }
 
 .post__user-info p {

@@ -26,6 +26,10 @@ a {
     color: var(--color-black);
 }
 
+button {
+    cursor: pointer;
+}
+
 .heading-l {
     font-size: 2rem;
 }
