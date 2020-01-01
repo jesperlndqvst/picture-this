@@ -50,15 +50,22 @@
 
                 <?php if ($post['user_id'] === $user['id']) : ?>
                     <div class="post-info__edit hidden">
-                        <form class="form form--update" action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">
-                            <label for="description">New description</label>
-                            <input type="text" name="description" required>
-                            <button type="submit" name="submit">Submit</button>
-                        </form>
-                        <form class="form form--delete" action="/app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
-                            <label for="delete">Delete</label>
-                            <button type="submit" name="submit">Delete</button>
-                        </form>
+
+                        <div class="post-info__edit__content">
+                            <h2 class="heading-l">Edit post</h2>
+                            <div class="post-info__edit__content__exit">
+                                <a><img src="assets/images/close.svg" alt="close"></a>
+                            </div>
+                            <form class="form form--update" action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">
+                                <label for="description">Description</label>
+                                <textarea rows="4" cols="50" name="description" required><?= $post['description'] ?></textarea>
+                                <button class="btn btn--lg" type="submit" name="submit">Edit description</button>
+                            </form>
+                            <form class="form form--delete" action="/app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
+                                <label for="submit">Delete</label>
+                                <button class="btn btn--lg" type="submit" name="submit">Delete post</button>
+                            </form>
+                        </div>
                     </div>
                 <?php endif; ?>
 

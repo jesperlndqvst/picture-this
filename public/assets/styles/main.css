@@ -30,6 +30,12 @@ button {
     cursor: pointer;
 }
 
+textarea {
+   resize: none;
+   padding: 0.2rem;
+   border: 1px solid var(--color-dark-grey);
+}
+
 .heading-l {
     font-size: 2rem;
 }
