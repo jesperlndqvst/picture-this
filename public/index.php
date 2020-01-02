@@ -49,11 +49,11 @@
                 <p><?= $post['date(date)'] ?></p>
 
                 <?php if ($post['user_id'] === $user['id']) : ?>
-                    <div class="post-info__edit hidden">
+                    <div class="post-edit hidden">
 
-                        <div class="post-info__edit__content">
+                        <div class="post-edit-container">
                             <h2 class="heading-l">Edit post</h2>
-                            <div class="post-info__edit__content__exit">
+                            <div class="post-edit__exit">
                                 <a><img src="assets/images/close.svg" alt="close"></a>
                             </div>
                             <form class="form form--update" action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">

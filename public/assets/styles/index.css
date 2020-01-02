@@ -42,7 +42,7 @@
     padding: 0.5rem var(--padding-container);
 }
 
-.post-info__edit {
+.post-edit {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -58,7 +58,7 @@
     padding: var(--padding-container);
 }
 
-.post-info__edit__content {
+.post-edit-container {
     background-color: #fff;
     position: relative;
     display: flex;
@@ -70,11 +70,11 @@
     padding: 1rem 1rem 8rem 1rem;
 }
 
-.post-info__edit__content h2 {
+.post-edit h2 {
     margin-bottom: 2rem;
 }
 
-.post-info__edit__content__exit {
+.post-edit__exit {
     position: absolute;
     top: 1rem;
     right: 1rem;
