@@ -56,15 +56,16 @@
                             <div class="post-edit__exit">
                                 <a><img src="assets/images/close.svg" alt="close"></a>
                             </div>
-                            <form class="form form--update" action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">
-                                <label for="description">Description</label>
-                                <textarea rows="4" cols="50" name="description" required><?= $post['description'] ?></textarea>
-                                <button class="btn btn--lg" type="submit" name="submit">Edit description</button>
-                            </form>
-                            <form class="form form--delete" action="/app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
-                                <label for="submit">Delete</label>
-                                <button class="btn btn--lg" type="submit" name="submit">Delete post</button>
-                            </form>
+                            <img class="post__img" src="app/uploads/posts/<?= $post['media'] ?>" alt="post image">
+                            <div class="post-edit__forms">
+                                <form class="form form--update" action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">
+                                    <textarea rows="4" cols="50" name="description" required><?= $post['description'] ?></textarea>
+                                    <button class="btn btn--lg" type="submit" name="submit">Edit description</button>
+                                </form>
+                                <form class="form form--delete" action="/app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
+                                    <button class="btn btn--lg" type="submit" name="submit">Delete post</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 <?php endif; ?>
