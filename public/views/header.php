@@ -17,6 +17,7 @@ require __DIR__ . '/../app/autoload.php';
     <link rel="stylesheet" href="/assets/styles/navbar.css">
     <link rel="stylesheet" href="/assets/styles/index.css">
     <link rel="stylesheet" href="/assets/styles/comments.css">
+    <link rel="stylesheet" href="/assets/styles/store.css">
     <script src="https://kit.fontawesome.com/4d50ed984c.js" crossorigin="anonymous"></script>
 
 </head>

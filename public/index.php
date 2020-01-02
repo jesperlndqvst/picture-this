@@ -59,7 +59,7 @@
                             <img class="post__img" src="app/uploads/posts/<?= $post['media'] ?>" alt="post image">
                             <div class="post-edit__forms">
                                 <form class="form form--update" action="/app/posts/update.php?id=<?= $post['id'] ?>" method="post">
-                                    <textarea rows="4" cols="50" name="description" required><?= $post['description'] ?></textarea>
+                                    <textarea class="form__input" rows="4" cols="50" name="description" required><?= $post['description'] ?></textarea>
                                     <button class="btn btn--lg" type="submit" name="submit">Edit description</button>
                                 </form>
                                 <form class="form form--delete" action="/app/posts/delete.php?id=<?= $post['id'] ?>" method="post">
