@@ -212,3 +212,25 @@ if (!function_exists('getComments')) {
         return $comments;
     }
 }
+if (!function_exists('getProfileById')) {
+    /**
+     * Gets profile information from database
+     *
+     * @param int $profileId
+     *
+     * @param PDO $pdo
+     *
+     * @return array
+     */
+    function getProfileById(int $profileId, PDO $pdo): array
+    {
+        $query = 'SELECT username, biography, avatar FROM users
+        INNER JOIN posts ON users.id = posts.user_id
+        INNER JOIN followers ON users.id = followers.user_id WHERE users.id = :profileId';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
+        $statement->execute();
+        $profile = $statement->fetch(PDO::FETCH_ASSOC);
+        return $profile;
+    }
+}

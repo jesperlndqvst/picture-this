@@ -1,0 +1,11 @@
+.profile {
+    padding: var(--padding-container);
+}
+
+.profile-info__img {
+    width: 100px;
+}
+
+.profile .btn--lg {
+    background-color: var(--color-dark-grey);
+}
