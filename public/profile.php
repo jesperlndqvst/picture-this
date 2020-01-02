@@ -4,18 +4,35 @@
 <?php authenticateUser() ?>
 <?php $user = getUserById($_SESSION['user']['id'], $pdo) ?>
 
+
 <?php if (isset($_GET['id'], $_GET['username'])) : ?>
     <?php $profile = getProfileById($_GET['id'], $pdo) ?>
-    <article class="profile">
+    <?php $postsCount = getPostsCountById($_GET['id'], $pdo) ?>
+    <?php $followsCount = getFollowCountById($_GET['id'], $pdo) ?>
 
+
+    <article class="profile">
 
         <div class="profile-info">
             <img class="profile-info__img" src="app/uploads/avatars/<?= $profile['avatar'] ?>" alt="profile image">
-            
+            <div class="profile-info__posts">
+                <p><?= $postsCount['posts'] ?></p>
+                <p>Posts</p>
+            </div>
+            <div class="profile-info__followers">
+                <p><?= $followsCount['followers'] ?></p>
+                <p>Followers</p>
+            </div>
+            <div class="profile-info__following">
+                <p><?= $followsCount['following'] ?></p>
+                <p>Following</p>
+            </div>
         </div>
 
-
-
+        <div class="profile-description">
+            <p class="text-bold"><?= $profile['username'] ?></p>
+            <p><?= $profile['biography'] ?></p>
+        </div>
 
 
         <?php if ($_GET['id'] !== $user['id']) : ?>

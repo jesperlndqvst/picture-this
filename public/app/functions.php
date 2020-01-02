@@ -225,12 +225,53 @@ if (!function_exists('getProfileById')) {
     function getProfileById(int $profileId, PDO $pdo): array
     {
         $query = 'SELECT username, biography, avatar FROM users
-        INNER JOIN posts ON users.id = posts.user_id
-        INNER JOIN followers ON users.id = followers.user_id WHERE users.id = :profileId';
+        WHERE users.id = :profileId';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
         $statement->execute();
         $profile = $statement->fetch(PDO::FETCH_ASSOC);
         return $profile;
+    }
+}
+if (!function_exists('getPostsCountById')) {
+    /**
+     * Gets post count information from database
+     *
+     * @param int $profileId
+     *
+     * @param PDO $pdo
+     *
+     * @return array
+     */
+    function getPostsCountById(int $profileId, PDO $pdo): array
+    {
+        $query = 'SELECT count(id) AS posts FROM posts
+        WHERE user_id = :profileId';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
+        $statement->execute();
+        $postsCount = $statement->fetch(PDO::FETCH_ASSOC);
+        return $postsCount;
+    }
+}
+if (!function_exists('getFollowCountById')) {
+    /**
+     * Gets follow count information from database
+     *
+     * @param int $profileId
+     *
+     * @param PDO $pdo
+     *
+     * @return array
+     */
+    function getFollowCountById(int $profileId, PDO $pdo): array
+    {
+        $query = 'SELECT count(follow_id) -1 AS followers, count(user_id) -1 AS following
+        FROM followers WHERE user_id = :profileId';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
+        $statement->execute();
+        $followCount = $statement->fetch(PDO::FETCH_ASSOC);
+        return $followCount;
     }
 }

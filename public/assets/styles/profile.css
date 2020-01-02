@@ -2,8 +2,19 @@
     padding: var(--padding-container);
 }
 
+.profile-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
 .profile-info__img {
-    width: 100px;
+    width: 80px;
+    height: 80px;
+    object-fit: center;
+    object-position: center;
+    border-radius: 50%;
 }
 
 .profile .btn--lg {
