@@ -17,10 +17,14 @@
     border-radius: 50%;
 }
 
-.profile .btn--lg {
-    background-color: var(--color-dark-grey);
+.profile-description {
+    margin-top: 1rem;
 }
 
+.profile .btn--lg {
+    background-color: var(--color-dark-grey);
+    margin-top: 1rem;
+}
 
 .profile-posts {
     display: flex;
