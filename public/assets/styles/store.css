@@ -1,0 +1,35 @@
+.store {
+    height: 100vh;
+    text-align: center;
+    padding: var(--padding-container);
+}
+
+.store input,
+label {
+    display: block;
+    margin: auto;
+}
+
+.store input {
+    width: 10rem;
+}
+
+.store input[type='file']::-webkit-file-upload-button {
+    border: none;
+    background: var(--color-dark-grey);
+    padding: 0.7rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.form--store {
+    display: flex;
+    height: 45%;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.store .btn--lg {
+    background-color: var(--color-dark-grey);
+    margin-top: 2rem;
+}

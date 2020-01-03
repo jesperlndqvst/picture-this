@@ -1,11 +1,6 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 <?php require __DIR__ . '/views/navigation.php'; ?>
 <?php authenticateUser() ?>
-<article>
-    <h1><?php echo $config['title']; ?></h1>
-    <p>Add new post</p>
-</article>
-
 
 <?php if (isset($_SESSION['errors'])) : ?>
     <?php foreach ($_SESSION['errors'] as $error) : ?>
@@ -14,12 +9,13 @@
     <?php unset($_SESSION['errors']); ?>
 <?php endif; ?>
 
-
-<article>
-    <form action="app/posts/store.php" method="POST" enctype="multipart/form-data">
+<article class="store">
+    <h2 class="heading-l">New post</h2>
+    <form class="form form--store" action="app/posts/store.php" method="POST" enctype="multipart/form-data">
+        <label for="file">Upload file</label>
         <input type="file" name="file">
-        <input type="text" name="description">
-        <button type="submit" name="submit">Upload</button>
+        <textarea class="form__input" rows="4" cols="50" name="description" placeholder="Write a image description..."></textarea>
+        <button class="btn btn--lg" type="submit" name="submit">Upload</button>
     </form>
 </article>
 
