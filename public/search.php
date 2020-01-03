@@ -2,20 +2,24 @@
 <?php require __DIR__ . '/views/navigation.php'; ?>
 
 
-<form action="/app/users/search.php" method="get">
-    <label for="search">Search</label>
-    <input type="text" name="search" required>
-    <button type="submit">Search</button>
-</form>
+<article class="search">
+    <form action="search.php" method="get">
+        <label for="search">Search</label>
+        <input type="text" name="search" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <?php if (isset($_GET['search'])) : ?>
+        <?php $searchResults = getSearchResult($_GET['search'], $pdo) ?>
+        <?php foreach ($searchResults as $searchResult) : ?>
+            <a href="/profile.php?id=<?= $searchResult['id'] ?>&username=<?= $searchResult['username'] ?>"><?= $searchResult['username'] ?></a>
+        <?php endforeach; ?>
+    <?php endif; ?>
 
 
-<?php if (isset($_SESSION['searchResults'])) : ?>
-    <?php $searchResults = $_SESSION['searchResults'] ?>
-    <?php foreach ($searchResults as $searchResult) : ?>
-        <a href="/profile.php?id=<?= $searchResult['id'] ?>&username=<?= $searchResult['username'] ?>"><?= $searchResult['username'] ?></a>
-    <?php endforeach; ?>
-    <?php unset($_SESSION['searchResults']); ?>
-<?php endif; ?>
+
+
+</article>
 
 
 <?php if (isset($_SESSION['errors'])) : ?>
