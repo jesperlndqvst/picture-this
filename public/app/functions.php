@@ -275,3 +275,24 @@ if (!function_exists('getFollowCountById')) {
         return $followCount;
     }
 }
+if (!function_exists('getProfilePostsById')) {
+    /**
+     * Gets profile images from database
+     *
+     * @param int $profileId
+     *
+     * @param PDO $pdo
+     *
+     * @return array
+     */
+    function getProfilePostsById(int $profileId, PDO $pdo): array
+    {
+        $query = 'SELECT media FROM posts
+        WHERE user_id = :profileId ORDER BY date DESC';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
+        $statement->execute();
+        $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
+}

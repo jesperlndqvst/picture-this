@@ -9,6 +9,7 @@
     <?php $profile = getProfileById($_GET['id'], $pdo) ?>
     <?php $postsCount = getPostsCountById($_GET['id'], $pdo) ?>
     <?php $followsCount = getFollowCountById($_GET['id'], $pdo) ?>
+    <?php $posts = getProfilePostsById($_GET['id'], $pdo) ?>
 
 
     <article class="profile">
@@ -41,10 +42,13 @@
             </form>
         <?php endif; ?>
 
-
-
         <a href="settings.php"><button class="btn btn--lg">Profile settings</button></a>
 
+        <div class="profile-posts">
+            <?php foreach ($posts as $post) : ?>
+                <img class="profile-posts__img" src="app/uploads/posts/<?= $post['media'] ?>" alt="post image">
+            <?php endforeach; ?>
+        </div>
 
     </article>
 

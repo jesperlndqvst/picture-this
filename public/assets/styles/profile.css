@@ -20,3 +20,15 @@
 .profile .btn--lg {
     background-color: var(--color-dark-grey);
 }
+
+
+.profile-posts {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.profile-posts__img {
+    width: calc(100% / 3);
+    display: block;
+}
