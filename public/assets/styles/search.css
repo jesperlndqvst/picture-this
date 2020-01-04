@@ -3,6 +3,7 @@
 }
 
 .search .btn {
+    background-color: var(--color-dark-grey);
     margin-top: 1rem;
 }
 

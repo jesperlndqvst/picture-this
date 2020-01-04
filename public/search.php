@@ -1,6 +1,7 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 <?php require __DIR__ . '/views/navigation.php'; ?>
 
+<?php authenticateUser() ?>
 
 <article class="search">
     <form action="search.php" method="get">
