@@ -2,7 +2,6 @@
     padding: var(--padding-container);
 }
 
-
 .comments .btn {
     background-color: var(--color-dark-grey);
     margin-top: 1rem;
@@ -10,6 +9,8 @@
 
 .comments-content {
     margin-top: 1rem;
+    display: flex;
+    align-items: center;
 }
 
 .comments-content img {
@@ -18,5 +19,6 @@
     border-radius: 50%;
 }
 
-
-
+.comments-content__text {
+    margin-left: 1rem;
+}
