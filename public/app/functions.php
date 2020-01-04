@@ -309,7 +309,7 @@ if (!function_exists('getSearchResult')) {
     function getSearchResult(string $search, PDO $pdo): array
     {
         $search = filter_var($_GET['search'], FILTER_SANITIZE_STRING);
-        $statement = $pdo->prepare('SELECT username, id FROM users WHERE username LIKE :search');
+        $statement = $pdo->prepare('SELECT username, id, avatar FROM users WHERE username LIKE :search');
         if (!$statement) {
             die(var_dump($pdo->errorInfo()));
         }
