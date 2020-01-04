@@ -22,7 +22,7 @@
 
 <article class="posts">
     <?php foreach ($posts as $post) : ?>
-        <div class="post">
+        <div class="post" id="<?= $post['id'] ?>">
 
             <div class="post__user-info">
                 <div>
