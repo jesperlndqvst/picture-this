@@ -12,7 +12,7 @@
 .profile-info__img {
     width: 80px;
     height: 80px;
-    object-fit: center;
+    object-fit: cover;
     object-position: center;
     border-radius: 50%;
 }

@@ -20,7 +20,6 @@ if (isset($_GET['id'])) {
 
         // Unfollow user
         if ($user) {
-            displayMessage('User Unfollowed');
             $query = 'DELETE FROM followers
             WHERE user_id = :userId AND follow_id = :followId';
             $statement = $pdo->prepare($query);
