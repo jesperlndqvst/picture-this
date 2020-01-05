@@ -22,7 +22,7 @@
 
 <article class="posts">
     <?php foreach ($posts as $post) : ?>
-        <div class="post">
+        <div class="post" id="<?= $post['id'] ?>">
 
             <div class="post__user-info">
                 <div>
@@ -38,11 +38,11 @@
 
             <div class="post__post-info">
                 <form class="form form--likes" action="/app/posts/likes.php" method="post">
-                    <label for="likes"><?= $post['likes'] ?></label>
                     <input type="hidden" name="id" value=" <?= $post['id'] ?>">
                     <button type="submit" name="submit">
                         <i class="<?= isLikedByUser((int) $post['id'], $pdo) ? "fas fa-heart" : "far fa-heart"  ?>"></i>
                     </button>
+                    <p><?= $post['likes'] ?></p>
                 </form>
 
                 <p><?= $post['description'] ?></p>
@@ -69,7 +69,6 @@
                         </div>
                     </div>
                 <?php endif; ?>
-
 
                 <a href="comments.php?id=<?= $post['id'] ?>">Comment...</a>
             </div>

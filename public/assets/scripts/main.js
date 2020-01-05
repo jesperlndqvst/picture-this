@@ -8,7 +8,7 @@ formLikes.forEach(form => {
     form.addEventListener('submit', event => {
         event.preventDefault();
 
-        const heart = form.children[2].firstElementChild;
+        const heart = form.children[1].firstElementChild;
         if (heart.classList.contains('fas')) {
             heart.classList.remove('fas');
             heart.classList.add('far');
@@ -24,7 +24,7 @@ formLikes.forEach(form => {
             body: formData
         })
             .then(response => response.json())
-            .then(json => (form.firstElementChild.textContent = json.likes));
+            .then(json => (form.lastElementChild.textContent = json.likes));
     });
 });
 

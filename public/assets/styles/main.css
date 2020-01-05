@@ -1,12 +1,8 @@
-/* Css Reset */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-/* Custom Properties */
 
 :root {
     --color-black: #262626;
@@ -45,11 +41,18 @@ textarea {
 }
 
 .btn {
-    width: 100%;
     padding: 0.7rem 0;
     border: none;
     border-radius: 0.4rem;
     cursor: pointer;
+}
+
+.btn--lg {
+    width: 100%;
+}
+
+.btn--s {
+    width: 50%;
 }
 
 .form__input {

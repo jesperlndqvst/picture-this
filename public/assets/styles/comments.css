@@ -1,9 +1,24 @@
-.form--comments img {
+.comments {
+    padding: var(--padding-container);
+}
+
+.comments .btn {
+    background-color: var(--color-dark-grey);
+    margin-top: 1rem;
+}
+
+.comments-content {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.comments-content img {
     width: 75px;
     height: 75px;
     border-radius: 50%;
 }
 
-.form--comments span {
-    font-weight: bold;
+.comments-content__text {
+    margin-left: 1rem;
 }

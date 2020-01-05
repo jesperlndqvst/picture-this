@@ -1,3 +1,24 @@
 .search {
     padding: var(--padding-container);
 }
+
+.search .btn {
+    background-color: var(--color-dark-grey);
+    margin-top: 1rem;
+}
+
+.search-result {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.search-result__img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-position: center;
+    object-fit: cover;
+    margin-right: 1rem;
+}

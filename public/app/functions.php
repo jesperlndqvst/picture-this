@@ -241,9 +241,9 @@ if (!function_exists('getPostsCountById')) {
      *
      * @param PDO $pdo
      *
-     * @return array
+     * @return string
      */
-    function getPostsCountById(int $profileId, PDO $pdo): array
+    function getPostsCountById(int $profileId, PDO $pdo): string
     {
         $query = 'SELECT count(id) AS posts FROM posts
         WHERE user_id = :profileId';
@@ -251,30 +251,53 @@ if (!function_exists('getPostsCountById')) {
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
         $statement->execute();
         $postsCount = $statement->fetch(PDO::FETCH_ASSOC);
-        return $postsCount;
+        return $postsCount['posts'];
     }
 }
-if (!function_exists('getFollowCountById')) {
+if (!function_exists('getFollowersCountById')) {
     /**
-     * Gets follow count information from database
+     *
+     * Gets followers count information from database
      *
      * @param int $profileId
      *
      * @param PDO $pdo
      *
-     * @return array
+     * @return string
      */
-    function getFollowCountById(int $profileId, PDO $pdo): array
+    function getFollowersCountById(int $profileId, PDO $pdo): string
     {
-        $query = 'SELECT count(follow_id) -1 AS followers, count(user_id) -1 AS following
-        FROM followers WHERE user_id = :profileId';
+        $query = 'SELECT count(user_id) -1 AS followers FROM followers
+        WHERE follow_id = :profileId;';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
         $statement->execute();
         $followCount = $statement->fetch(PDO::FETCH_ASSOC);
-        return $followCount;
+        return $followCount['followers'];
     }
 }
+if (!function_exists('getFollowingCountById')) {
+    /**
+     *Gets following count information from database
+     *
+     * @param int $profileId
+     *
+     * @param PDO $pdo
+     *
+     * @return string
+     */
+    function getFollowingCountById(int $profileId, PDO $pdo): string
+    {
+        $query = 'SELECT count(follow_id) -1 AS following FROM followers
+        WHERE user_id = :profileId;';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
+        $statement->execute();
+        $followingCount = $statement->fetch(PDO::FETCH_ASSOC);
+        return $followingCount['following'];
+    }
+}
+
 if (!function_exists('getProfilePostsById')) {
     /**
      * Gets profile images from database
@@ -309,7 +332,7 @@ if (!function_exists('getSearchResult')) {
     function getSearchResult(string $search, PDO $pdo): array
     {
         $search = filter_var($_GET['search'], FILTER_SANITIZE_STRING);
-        $statement = $pdo->prepare('SELECT username, id FROM users WHERE username LIKE :search');
+        $statement = $pdo->prepare('SELECT username, id, avatar FROM users WHERE username LIKE :search');
         if (!$statement) {
             die(var_dump($pdo->errorInfo()));
         }
@@ -322,5 +345,32 @@ if (!function_exists('getSearchResult')) {
             displayMessage('No users found');
         }
         return $searchResults;
+    }
+}
+if (!function_exists('isFollowed')) {
+    /**
+     * Checks if user is followed
+     *
+     * @param userId $userId
+     *
+     * @param profileId $profileId
+     *
+     * @param PDO $pdo
+     *
+     * @return bool
+     */
+    function isFollowed(int $userId, int $profileId, PDO $pdo): bool
+    {
+        $query = 'SELECT * FROM followers
+        WHERE user_id = :userId AND follow_id = :profileId';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
+        $statement->execute();
+        $isFollowed = $statement->fetch(PDO::FETCH_ASSOC);
+        if($isFollowed) {
+            return true;
+        }
+        return false;
     }
 }

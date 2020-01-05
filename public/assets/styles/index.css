@@ -42,10 +42,16 @@
     padding: 0.5rem var(--padding-container);
 }
 
+.post__post-info a {
+    text-decoration: underline;
+}
+
 .form--likes {
     display: flex;
-    width: 2.5rem;
-    flex-direction: row-reverse;
+    align-items: baseline;
+}
+.form--likes p {
+    margin-left: .5rem;
 }
 
 .form--likes button {
