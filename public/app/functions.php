@@ -324,3 +324,30 @@ if (!function_exists('getSearchResult')) {
         return $searchResults;
     }
 }
+if (!function_exists('isFollowed')) {
+    /**
+     * Checks if user is followed
+     *
+     * @param userId $userId
+     *
+     * @param profileId $profileId
+     *
+     * @param PDO $pdo
+     *
+     * @return bool
+     */
+    function isFollowed(int $userId, int $profileId, PDO $pdo): bool
+    {
+        $query = 'SELECT * FROM followers
+        WHERE user_id = :userId AND follow_id = :profileId';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
+        $statement->execute();
+        $isFollowed = $statement->fetch(PDO::FETCH_ASSOC);
+        if($isFollowed) {
+            return true;
+        }
+        return false;
+    }
+}

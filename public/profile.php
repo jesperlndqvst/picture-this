@@ -38,7 +38,9 @@
 
         <?php if ($_GET['id'] !== $user['id']) : ?>
             <form action="/app/users/follow.php?id=<?= $_GET['id'] ?>&username=<?= $_GET['username'] ?>" method="post">
-                <button class="btn btn--lg" type="submit" name="submit">Follow</button>
+                <button class="btn btn--lg" type="submit" name="submit">
+                    <?= isFollowed($user['id'], $_GET['id'], $pdo) ? 'Unfollow' : 'Follow' ; ?>
+                </button>
             </form>
         <?php endif; ?>
 
