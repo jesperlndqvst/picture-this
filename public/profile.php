@@ -54,21 +54,6 @@
 
     </article>
 
-
-
-
-
-
-
-
-<?php endif; ?>
-
-
-<?php if (isset($_SESSION['errors'])) : ?>
-    <?php foreach ($_SESSION['errors'] as $error) : ?>
-        <p><?= $error ?></p>
-    <?php endforeach; ?>
-    <?php unset($_SESSION['errors']); ?>
 <?php endif; ?>
 
 <?php require __DIR__ . '/views/footer.php'; ?>
