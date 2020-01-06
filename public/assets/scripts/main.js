@@ -1,6 +1,6 @@
 'use strict';
 
-// Updates like number without page reload
+// Updates like number
 
 const formLikes = document.querySelectorAll('.form--likes');
 
@@ -28,7 +28,7 @@ formLikes.forEach(form => {
     });
 });
 
-// Toggles edit information on click
+// Toggles edit information
 
 const editPosts = document.querySelectorAll('.user-info__edit');
 
@@ -44,3 +44,21 @@ editPosts.forEach(post => {
         });
     });
 });
+
+// Preview post image
+
+const fileFormInput = document.querySelector('.form--store__input');
+
+if (fileFormInput) {
+    fileFormInput.addEventListener('change', event => {
+        const input = event.target;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const TheFileContents = reader.result;
+            document.querySelector('.form--store__img').innerHTML =
+                '<img src="' + TheFileContents + '" />';
+        };
+        reader.readAsDataURL(input.files[0]);
+    });
+}
