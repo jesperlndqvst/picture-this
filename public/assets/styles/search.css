@@ -1,5 +1,7 @@
 .search {
     padding: var(--padding-container);
+    max-width: 600px;
+    margin: auto;
 }
 
 .search .btn {

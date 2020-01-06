@@ -2,6 +2,8 @@
     height: 100vh;
     text-align: center;
     padding: var(--padding-container);
+    max-width: 600px;
+    margin: auto;
 }
 
 .store input,

@@ -1,5 +1,6 @@
-.post {
-    position: relative;
+.posts {
+    max-width: 1200px;
+    margin: auto;
 }
 
 .post__user-info {

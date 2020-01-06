@@ -1,10 +1,16 @@
 .navbar {
-    display: flex;
-    width: 100vw;
-    padding: var(--padding-container);
-    justify-content: space-between;
     background-color: var(--color-light-grey);
     border-bottom: 1px solid var(--color-dark-grey);
+    display: flex;
+    justify-content: center;
+    padding: var(--padding-container);
+}
+
+.navbar-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: space-between;
 }
 
 .navbar__heading {

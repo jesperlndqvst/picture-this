@@ -23,7 +23,7 @@
                 <p>Followers</p>
             </div>
             <div class="profile-info__following">
-                <p><?= getFollowingCountById( $_GET['id'], $pdo) ?></p>
+                <p><?= getFollowingCountById($_GET['id'], $pdo) ?></p>
                 <p>Following</p>
             </div>
         </div>
