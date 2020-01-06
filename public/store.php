@@ -4,6 +4,10 @@
 
 <article class="store">
 
+
+
+    <h2 class="heading-l">New post</h2>
+
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
             <p><?= $error ?></p>
@@ -11,10 +15,9 @@
         <?php unset($_SESSION['errors']); ?>
     <?php endif; ?>
 
-    <h2 class="heading-l">New post</h2>
     <form class="form form--store" action="app/posts/store.php" method="POST" enctype="multipart/form-data">
-        <label for="file">Upload file</label>
-        <input type="file" name="file">
+        <div class="form--store__img"></div>
+        <input class="form--store__input" type="file" name="file">
         <textarea class="form__input" rows="4" cols="50" name="description" placeholder="Write a image description..."></textarea>
         <button class="btn btn--lg" type="submit" name="submit">Upload</button>
     </form>
