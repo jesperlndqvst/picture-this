@@ -1,5 +1,7 @@
 .settings {
     padding: var(--padding-container);
+    max-width: 600px;
+    margin: auto;
 }
 
 .avatar-settings {

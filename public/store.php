@@ -2,14 +2,15 @@
 <?php require __DIR__ . '/views/navigation.php'; ?>
 <?php authenticateUser() ?>
 
-<?php if (isset($_SESSION['errors'])) : ?>
-    <?php foreach ($_SESSION['errors'] as $error) : ?>
-        <p><?= $error ?></p>
-    <?php endforeach; ?>
-    <?php unset($_SESSION['errors']); ?>
-<?php endif; ?>
-
 <article class="store">
+
+    <?php if (isset($_SESSION['errors'])) : ?>
+        <?php foreach ($_SESSION['errors'] as $error) : ?>
+            <p><?= $error ?></p>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['errors']); ?>
+    <?php endif; ?>
+
     <h2 class="heading-l">New post</h2>
     <form class="form form--store" action="app/posts/store.php" method="POST" enctype="multipart/form-data">
         <label for="file">Upload file</label>

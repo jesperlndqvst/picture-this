@@ -1,5 +1,7 @@
 .comments {
     padding: var(--padding-container);
+    max-width: 600px;
+    margin: auto;
 }
 
 .comments .btn {

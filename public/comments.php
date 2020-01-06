@@ -9,6 +9,7 @@
 ?>
 
 <article class="comments">
+    <h2 class="heading-l">Comments</h2>
     <form class="form form--comments" action="/app/posts/comments.php?id=<?= $postId ?>" method="post">
         <input class="form__input" type="text" name="comment" placeholder="Comment" autocomplete="off" required>
         <button class="btn btn--lg" type="submit" name="submit">Comment</button>

@@ -4,6 +4,9 @@
 <?php authenticateUser() ?>
 
 <article class="search">
+
+    <h2 class="heading-l">Search for users</h2>
+
     <form action="search.php" method="get">
         <input class="form__input" type="text" name="search" placeholder="Username" value autocomplete="off" required>
         <button class="btn btn--lg" type="submit">Search</button>
