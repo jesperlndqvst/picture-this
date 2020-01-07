@@ -336,7 +336,7 @@ if (!function_exists('getProfilePostsById')) {
      */
     function getProfilePostsById(int $profileId, PDO $pdo): array
     {
-        $query = 'SELECT media FROM posts
+        $query = 'SELECT id, media FROM posts
         WHERE user_id = :profileId ORDER BY date DESC';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
