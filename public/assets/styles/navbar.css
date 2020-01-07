@@ -20,8 +20,19 @@
 .navbar__list {
     display: flex;
     width: 50%;
-    justify-content: space-between;
     list-style: none;
+    justify-content: space-between;
+}
+
+.navbar__list li {
+    width: 20px;
+    height: 20px;
+}
+
+.navbar__list a {
+    height: 100%;
+    width: 100%;
+    display: block;
 }
 
 .navbar__list img {
