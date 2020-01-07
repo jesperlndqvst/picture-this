@@ -35,6 +35,11 @@
 }
 
 .profile-posts__img {
-    width: calc(100% / 3);
+    width: calc(100% / 3 - 3px);
+    margin: 1px;
+}
+
+.profile-posts__img img {
+    width: 100%;
     display: block;
 }

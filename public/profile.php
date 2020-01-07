@@ -9,7 +9,6 @@
     <?php $profile = getProfileById($_GET['id'], $pdo) ?>
     <?php $posts = getProfilePostsById($_GET['id'], $pdo) ?>
 
-
     <article class="profile">
 
         <div class="profile-info">
@@ -46,7 +45,12 @@
 
         <div class="profile-posts">
             <?php foreach ($posts as $post) : ?>
-                <img class="profile-posts__img" src="app/uploads/posts/<?= $post['media'] ?>" alt="post image">
+                <div class="profile-posts__img">
+                    <a href="/?<?= $profile['username'] ?> #<?= $post['id'] ?>">
+                        <img src="app/uploads/posts/<?= $post['media'] ?>" alt="post image">
+                    </a>
+                </div>
+
             <?php endforeach; ?>
         </div>
 
