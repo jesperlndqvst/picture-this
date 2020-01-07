@@ -39,9 +39,9 @@
                     <?= isFollowed($user['id'], $_GET['id'], $pdo) ? 'Unfollow' : 'Follow'; ?>
                 </button>
             </form>
+        <?php else : ?>
+            <a href="settings.php"><button class="btn btn--lg">Profile settings</button></a>
         <?php endif; ?>
-
-        <a href="settings.php"><button class="btn btn--lg">Profile settings</button></a>
 
         <div class="profile-posts">
             <?php foreach ($posts as $post) : ?>
