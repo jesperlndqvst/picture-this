@@ -1,9 +1,18 @@
-<?php require __DIR__ . '/views/header.php'; ?>
-<?php require __DIR__ . '/views/navigation.php'; ?>
+<?php
 
-<?php authenticateUser() ?>
-<?php $user = getUserById($_SESSION['user']['id'], $pdo) ?>
-<?php $posts = getPosts($pdo) ?>
+require __DIR__ . '/views/header.php';
+require __DIR__ . '/views/navigation.php';
+
+authenticateUser();
+$user = getUserById($_SESSION['user']['id'], $pdo);
+if (isset($_GET['username'])) {
+    $posts = getUserPosts($_GET['username'], $pdo);
+} else {
+    $posts = getAllPosts($pdo);
+}
+
+
+?>
 
 <?php if (isset($_SESSION['errors'])) : ?>
     <?php foreach ($_SESSION['errors'] as $error) : ?>

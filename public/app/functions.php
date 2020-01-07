@@ -144,15 +144,15 @@ if (!function_exists('getUserById')) {
         return $user = [];
     }
 }
-if (!function_exists('getPosts')) {
+if (!function_exists('getAllPosts')) {
     /**
-     * Gets posts from database
+     * Gets all posts from database
      *
      * @param PDO $pdo
      *
      * @return array
      */
-    function getPosts(PDO $pdo): array
+    function getAllPosts(PDO $pdo): array
     {
         $id = $_SESSION['user']['id'];
         $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date(date), likes, username, avatar
@@ -164,6 +164,32 @@ if (!function_exists('getPosts')) {
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->execute();
         $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
+}
+if (!function_exists('getUserPosts')) {
+    /**
+     * Gets user posts from database
+     *
+     * @param string $username
+     *
+     * @param PDO $pdo
+     *
+     * @return array
+     */
+    function getUserPosts(string $username, PDO $pdo): array
+    {
+        $username = sanitizeUsername($_GET['username']);
+        $query = 'SELECT posts.id, posts.user_id, media, description, date(date), likes, username, avatar FROM posts
+        INNER JOIN users ON posts.user_id = users.id WHERE username = :username
+        ORDER BY posts.id DESC';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':username', $username, PDO::PARAM_STR);
+        $statement->execute();
+        $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if(!$posts) {
+            $posts = getAllPosts($pdo);
+        }
         return $posts;
     }
 }
