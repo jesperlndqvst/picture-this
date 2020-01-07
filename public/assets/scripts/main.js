@@ -63,13 +63,13 @@ if (fileFormInput) {
     });
 }
 
-
 // Preview avatar image
 
 const avatarForm = document.querySelector('.avatar-settings__form');
-const avatarInput = avatarForm.querySelector('input');
 
-if (avatarInput) {
+if (avatarForm) {
+    const avatarInput = avatarForm.querySelector('input');
+
     avatarInput.addEventListener('change', event => {
         const input = event.target;
 
