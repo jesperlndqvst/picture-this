@@ -30,8 +30,8 @@ if (isset($_POST['submit'], $_POST['description'])) {
                 $media =  $fileNameNew;
 
                 // Updates user data
-                $query = "INSERT INTO posts (media, description, date, user_id)
-                VALUES (:media, :description, julianday('now'), :id)";
+                $query = "INSERT INTO posts (media, description, date, user_id, likes)
+                VALUES (:media, :description, julianday('now'), :id, 0)";
                 $statement = $pdo->prepare($query);
                 $statement->bindParam(':media', $media, PDO::PARAM_STR);
                 $statement->bindParam(':description', $description, PDO::PARAM_STR);

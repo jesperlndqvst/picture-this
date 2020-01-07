@@ -36,12 +36,22 @@ editPosts.forEach(post => {
     post.addEventListener('click', () => {
         const currentPost = post.parentElement.parentElement;
         const hiddenForm = currentPost.querySelector('.post-edit');
+        const editContainer = currentPost.querySelector('.post-edit-container');
         const editPostExitBtn = currentPost.querySelector('.post-edit__exit');
         hiddenForm.classList.remove('hidden');
 
         editPostExitBtn.addEventListener('click', () => {
             hiddenForm.classList.add('hidden');
         });
+
+        hiddenForm.addEventListener('click', event => {
+            const isClickInside = editContainer.contains(event.target);
+            if (!isClickInside) {
+                hiddenForm.classList.add('hidden');
+            }
+        });
+
+
     });
 });
 
@@ -57,6 +67,26 @@ if (fileFormInput) {
         reader.onload = () => {
             const TheFileContents = reader.result;
             document.querySelector('.form--store__img').innerHTML =
+                '<img src="' + TheFileContents + '" />';
+        };
+        reader.readAsDataURL(input.files[0]);
+    });
+}
+
+// Preview avatar image
+
+const avatarForm = document.querySelector('.avatar-settings__form');
+
+if (avatarForm) {
+    const avatarInput = avatarForm.querySelector('input');
+
+    avatarInput.addEventListener('change', event => {
+        const input = event.target;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const TheFileContents = reader.result;
+            document.querySelector('.avatar-settings__img').innerHTML =
                 '<img src="' + TheFileContents + '" />';
         };
         reader.readAsDataURL(input.files[0]);

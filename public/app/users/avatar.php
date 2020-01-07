@@ -42,7 +42,6 @@ if (isset($_POST['submit'])) {
                 $fileNameNew = uniqid('', true) . "." . $fileActialExt;
                 $fileDestination = __DIR__ . '/../uploads/avatars/' . $fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
-                displayMessage('Your image is uploaded!');
                 $avatar = $fileNameNew;
 
                 // Updates user data
