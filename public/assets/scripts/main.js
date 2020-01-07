@@ -62,3 +62,23 @@ if (fileFormInput) {
         reader.readAsDataURL(input.files[0]);
     });
 }
+
+
+// Preview avatar image
+
+const avatarForm = document.querySelector('.avatar-settings__form');
+const avatarInput = avatarForm.querySelector('input');
+
+if (avatarInput) {
+    avatarInput.addEventListener('change', event => {
+        const input = event.target;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const TheFileContents = reader.result;
+            document.querySelector('.avatar-settings__img').innerHTML =
+                '<img src="' + TheFileContents + '" />';
+        };
+        reader.readAsDataURL(input.files[0]);
+    });
+}

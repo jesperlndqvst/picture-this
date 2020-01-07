@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.avatar-settings__img {
+.avatar-settings__img img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
