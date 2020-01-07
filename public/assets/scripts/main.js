@@ -36,12 +36,22 @@ editPosts.forEach(post => {
     post.addEventListener('click', () => {
         const currentPost = post.parentElement.parentElement;
         const hiddenForm = currentPost.querySelector('.post-edit');
+        const editContainer = currentPost.querySelector('.post-edit-container');
         const editPostExitBtn = currentPost.querySelector('.post-edit__exit');
         hiddenForm.classList.remove('hidden');
 
         editPostExitBtn.addEventListener('click', () => {
             hiddenForm.classList.add('hidden');
         });
+
+        hiddenForm.addEventListener('click', event => {
+            const isClickInside = editContainer.contains(event.target);
+            if (!isClickInside) {
+                hiddenForm.classList.add('hidden');
+            }
+        });
+
+
     });
 });
 
