@@ -21,9 +21,9 @@ require __DIR__ . '/../app/autoload.php';
     <link rel="stylesheet" href="/assets/styles/profile.css">
     <link rel="stylesheet" href="/assets/styles/settings.css">
     <link rel="stylesheet" href="/assets/styles/search.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/4d50ed984c.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    

@@ -1,3 +1,18 @@
+.welcome {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.welcome p {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.welcome a {
+    text-decoration: underline;
+    font-size: 2rem;
+}
+
 .posts {
     max-width: 1200px;
     margin: auto;

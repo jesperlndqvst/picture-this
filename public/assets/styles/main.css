@@ -13,7 +13,7 @@
 
 body {
     width: 100vw;
-    font-family: sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     color: var(--color-black);
 }
 
@@ -51,10 +51,6 @@ textarea {
 
 .btn--lg {
     width: 100%;
-}
-
-.btn--s {
-    width: 50%;
 }
 
 .form__input {
