@@ -10,7 +10,7 @@ if (!function_exists('redirect')) {
      *
      * @return void
      */
-    function redirect(string $path)
+    function redirect(string $path) : void
     {
         header("Location: ${path}");
         exit;
@@ -53,7 +53,7 @@ if (!function_exists('sanitizeEmail')) {
      *
      * @return string
      */
-    function sanitizeEmail($email)
+    function sanitizeEmail(string $email) : string
     {
         return filter_var(strtolower(trim($email)), FILTER_SANITIZE_EMAIL);
     }
@@ -66,7 +66,7 @@ if (!function_exists('sanitizeString')) {
      *
      * @return string
      */
-    function sanitizeString($string)
+    function sanitizeString($string) : string
     {
         return filter_var($string, FILTER_SANITIZE_STRING);
     }
@@ -80,7 +80,7 @@ if (!function_exists('hashPassword')) {
      *
      * @return string
      */
-    function hashPassword($password)
+    function hashPassword(string $password) : string
     {
         return password_hash($password, PASSWORD_DEFAULT);
     }
@@ -88,13 +88,13 @@ if (!function_exists('hashPassword')) {
 
 if (!function_exists('displayMessage')) {
     /**
-     * Displays message.
+     * Displays message to user.
      *
      * @param string $message
      *
      * @return void
      */
-    function displayMessage($message)
+    function displayMessage(string $message) : void
     {
         $_SESSION['errors'][] = "${message}";
     }
@@ -111,7 +111,7 @@ if (!function_exists('validateEmail')) {
      *
      * @return void
      */
-    function validateEmail($email, $path)
+    function validateEmail(string $email, string $path) : void
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             displayMessage('The email you entered is not valid. Please try again.');
@@ -123,15 +123,15 @@ if (!function_exists('validateEmail')) {
 
 if (!function_exists('getUserById')) {
     /**
-     * Gets user information from database
+     * Gets user information from database.
      *
-     * @param string $id
+     * @param int $id
      *
      * @param PDO $pdo
      *
      * @return array
      */
-    function getUserById(string $id, PDO $pdo): array
+    function getUserById(int $id, PDO $pdo): array
     {
         $query = 'SELECT * FROM users WHERE id = :id';
         $statement = $pdo->prepare($query);
@@ -147,7 +147,7 @@ if (!function_exists('getUserById')) {
 }
 if (!function_exists('getAllPosts')) {
     /**
-     * Gets all posts from database
+     * Gets all posts from database.
      *
      * @param PDO $pdo
      *
@@ -170,7 +170,7 @@ if (!function_exists('getAllPosts')) {
 }
 if (!function_exists('getUserPosts')) {
     /**
-     * Gets user posts from database
+     * Gets user posts from database.
      *
      * @param string $username
      *
@@ -196,7 +196,7 @@ if (!function_exists('getUserPosts')) {
 }
 if (!function_exists('isLikedByUser')) {
     /**
-     * Gets likes from database
+     * Gets likes from database.
      *
      * @param int $postId
      *
