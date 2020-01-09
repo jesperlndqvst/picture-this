@@ -7,12 +7,13 @@
 <article class="settings">
 
     <?php if (isset($_SESSION['errors'])) : ?>
-        <?php foreach ($_SESSION['errors'] as $error) : ?>
-            <p><?= $error ?></p>
-        <?php endforeach; ?>
-        <?php unset($_SESSION['errors']); ?>
+        <div class="errors">
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <p><?= $error ?></p>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']); ?>
+        </div>
     <?php endif; ?>
-
 
     <div class="avatar-settings">
         <div class="avatar-settings__img">

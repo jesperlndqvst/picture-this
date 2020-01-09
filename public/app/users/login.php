@@ -16,6 +16,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     if (!$user) {
+        displayMessage("There was an error with your email/password combination. Please try again.");
         redirect('/login.php');
     }
     if (password_verify($_POST['password'], $user['password'])) {

@@ -24,10 +24,12 @@ if (isset($_GET['username'])) {
 <article class="posts">
 
     <?php if (isset($_SESSION['errors'])) : ?>
-        <?php foreach ($_SESSION['errors'] as $error) : ?>
-            <p><?= $error ?></p>
-        <?php endforeach; ?>
-        <?php unset($_SESSION['errors']); ?>
+        <div class="errors">
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <p><?= $error ?></p>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']); ?>
+        </div>
     <?php endif; ?>
 
     <?php foreach ($posts as $post) : ?>

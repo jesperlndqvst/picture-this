@@ -86,6 +86,20 @@ if (!function_exists('hashPassword')) {
     }
 }
 
+if (!function_exists('displayMessage')) {
+    /**
+     * Displays message.
+     *
+     * @param string $message
+     *
+     * @return void
+     */
+    function displayMessage($message)
+    {
+        $_SESSION['errors'][] = "${message}";
+    }
+}
+
 
 if (!function_exists('validateEmail')) {
     /**
@@ -100,25 +114,12 @@ if (!function_exists('validateEmail')) {
     function validateEmail($email, $path)
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $_SESSION['errors'][] = 'Not a valid email!';
+            displayMessage('The email you entered is not valid. Please try again.');
             redirect("${path}");
         }
     }
 }
 
-if (!function_exists('displayMessage')) {
-    /**
-     * Displays message.
-     *
-     * @param string $message
-     *
-     * @return void
-     */
-    function displayMessage($message)
-    {
-        $_SESSION['errors'][] = "${message}";
-    }
-}
 
 if (!function_exists('getUserById')) {
     /**

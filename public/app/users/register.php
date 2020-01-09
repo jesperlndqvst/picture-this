@@ -24,10 +24,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     if ($users) {
         foreach ($users as $user) {
             if ($user['username'] === $username) {
-                displayMessage('Username is already taken');
+                displayMessage('Username is already in use');
             }
             if ($user['email'] === $email) {
-                displayMessage('Email is already taken');
+                displayMessage('Email is already in use');
             }
         }
         redirect('/register.php');

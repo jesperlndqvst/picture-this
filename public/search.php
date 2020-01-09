@@ -5,6 +5,15 @@
 
 <article class="search">
 
+    <?php if (isset($_SESSION['errors'])) : ?>
+        <div class="errors">
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <p><?= $error ?></p>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']); ?>
+        </div>
+    <?php endif; ?>
+
     <h2 class="heading-l">Search for users</h2>
 
     <form action="search.php" method="get">
@@ -26,12 +35,5 @@
 
 </article>
 
-
-<?php if (isset($_SESSION['errors'])) : ?>
-    <?php foreach ($_SESSION['errors'] as $error) : ?>
-        <p><?= $error ?></p>
-    <?php endforeach; ?>
-    <?php unset($_SESSION['errors']); ?>
-<?php endif; ?>
 
 <?php require __DIR__ . '/views/footer.php'; ?> 
