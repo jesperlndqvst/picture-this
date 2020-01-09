@@ -18,22 +18,22 @@
     object-position: center;
 }
 
-.avatar-settings__form {
+.form--avatar {
     width: 100%;
 }
 
-.avatar-settings__form input,
+.form--avatar input,
 label {
     display: block;
     margin: auto;
     margin-top: 1rem;
 }
 
-.avatar-settings__form input {
+.form--avatar input {
     width: 10rem;
 }
 
-.avatar-settings__form input[type='file']::-webkit-file-upload-button {
+.form--avatar input[type='file']::-webkit-file-upload-button {
     border: none;
     background: var(--color-dark-grey);
     padding: 0.7rem;

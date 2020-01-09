@@ -16,7 +16,7 @@
         </div>
     <?php endif; ?>
 
-    <form action="search.php" method="get">
+    <form class="form form--search" action="search.php" method="get">
         <input class="form__input" type="text" name="search" placeholder="Username" value autocomplete="off" required>
         <button class="btn btn--lg" type="submit">Search</button>
     </form>

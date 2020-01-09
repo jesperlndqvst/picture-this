@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-$user = getUserById($_SESSION['user']['id'], $pdo);
+$user = getUserById((int)$_SESSION['user']['id'], $pdo);
 $id = $user['id'];
 
 // Change password

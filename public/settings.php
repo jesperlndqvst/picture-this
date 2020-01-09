@@ -2,7 +2,7 @@
 <?php require __DIR__ . '/views/navigation.php'; ?>
 
 <?php authenticateUser() ?>
-<?php $user = getUserById($_SESSION['user']['id'], $pdo) ?>
+<?php $user = getUserById((int) $_SESSION['user']['id'], $pdo) ?>
 
 <article class="settings">
 
@@ -19,7 +19,7 @@
         <div class="avatar-settings__img">
             <img src="app/uploads/avatars/<?= $user['avatar'] ?>" alt="avatar image">
         </div>
-        <form class="avatar-settings__form" action="app/users/avatar.php" method="post" enctype="multipart/form-data">
+        <form class="form form--avatar" action="app/users/avatar.php" method="post" enctype="multipart/form-data">
             <input type="file" name="file">
             <button class="btn btn--lg" type="submit" name="submit">Change avatar</button>
         </form>
