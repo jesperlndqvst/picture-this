@@ -81,7 +81,7 @@ if (isset($_GET['username'])) {
                     </div>
                 <?php endif; ?>
 
-                <a href="comments.php?id=<?= $post['id'] ?>">Comment...</a>
+                <a href="comments.php?id=<?= $post['id'] ?>"><i class="far fa-comment"></i> Comment</a>
             </div>
 
         </div>
