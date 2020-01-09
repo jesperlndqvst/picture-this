@@ -4,6 +4,10 @@
     margin: auto;
 }
 
+.search form input {
+    margin-top: 1rem;
+}
+
 .search .btn {
     background-color: var(--color-dark-grey);
     margin-top: 1rem;

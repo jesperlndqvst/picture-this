@@ -45,6 +45,7 @@ textarea {
 
 .btn {
     padding: 0.7rem 0;
+    font-size: 0.7rem;
     border: none;
     border-radius: 0.4rem;
     cursor: pointer;

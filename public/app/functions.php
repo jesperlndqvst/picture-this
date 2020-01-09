@@ -23,7 +23,7 @@ if (!function_exists('authenticateUser')) {
      *
      * @return void
      */
-    function authenticateUser()
+    function authenticateUser() : void
     {
         if (!isset($_SESSION['user'])) {
             redirect('/login.php');
@@ -39,7 +39,7 @@ if (!function_exists('sanitizeUsername')) {
      *
      * @return string
      */
-    function sanitizeUsername($username)
+    function sanitizeUsername(string $username): string
     {
         return filter_var(trim($username), FILTER_SANITIZE_STRING);
     }
@@ -369,7 +369,8 @@ if (!function_exists('getSearchResult')) {
         $searchResults = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$searchResults) {
-            displayMessage('No users found');
+            displayMessage('No users found.');
+            redirect('search.php');
         }
         return $searchResults;
     }

@@ -5,6 +5,8 @@
 
 <article class="search">
 
+    <h2 class="heading-l">Search for users</h2>
+
     <?php if (isset($_SESSION['errors'])) : ?>
         <div class="errors">
             <?php foreach ($_SESSION['errors'] as $error) : ?>
@@ -13,8 +15,6 @@
             <?php unset($_SESSION['errors']); ?>
         </div>
     <?php endif; ?>
-
-    <h2 class="heading-l">Search for users</h2>
 
     <form action="search.php" method="get">
         <input class="form__input" type="text" name="search" placeholder="Username" value autocomplete="off" required>
