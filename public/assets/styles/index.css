@@ -52,6 +52,9 @@
 .post__img {
     display: block;
     width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .post__post-info {
@@ -148,4 +151,16 @@
 
 .hidden {
     display: none;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .post__img {
+        height: 500px;
+    }
+}
+@media only screen and (min-width: 800px) {
+    .post__img {
+        height: 700px;
+    }
 }
