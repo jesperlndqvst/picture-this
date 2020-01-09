@@ -1,5 +1,7 @@
-<?php authenticateUser() ?>
-<?php $user = getUserById($_SESSION['user']['id'], $pdo) ?>
+<?php
+authenticateUser();
+$user = getUserById((int)$_SESSION['user']['id'], $pdo);
+?>
 
 <nav class="navbar">
     <div class="navbar-container">

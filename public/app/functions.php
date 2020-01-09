@@ -10,7 +10,7 @@ if (!function_exists('redirect')) {
      *
      * @return void
      */
-    function redirect(string $path) : void
+    function redirect(string $path): void
     {
         header("Location: ${path}");
         exit;
@@ -23,7 +23,7 @@ if (!function_exists('authenticateUser')) {
      *
      * @return void
      */
-    function authenticateUser() : void
+    function authenticateUser(): void
     {
         if (!isset($_SESSION['user'])) {
             redirect('/login.php');
@@ -53,7 +53,7 @@ if (!function_exists('sanitizeEmail')) {
      *
      * @return string
      */
-    function sanitizeEmail(string $email) : string
+    function sanitizeEmail(string $email): string
     {
         return filter_var(strtolower(trim($email)), FILTER_SANITIZE_EMAIL);
     }
@@ -66,7 +66,7 @@ if (!function_exists('sanitizeString')) {
      *
      * @return string
      */
-    function sanitizeString($string) : string
+    function sanitizeString($string): string
     {
         return filter_var($string, FILTER_SANITIZE_STRING);
     }
@@ -80,7 +80,7 @@ if (!function_exists('hashPassword')) {
      *
      * @return string
      */
-    function hashPassword(string $password) : string
+    function hashPassword(string $password): string
     {
         return password_hash($password, PASSWORD_DEFAULT);
     }
@@ -94,7 +94,7 @@ if (!function_exists('displayMessage')) {
      *
      * @return void
      */
-    function displayMessage(string $message) : void
+    function displayMessage(string $message): void
     {
         $_SESSION['errors'][] = "${message}";
     }
@@ -111,7 +111,7 @@ if (!function_exists('validateEmail')) {
      *
      * @return void
      */
-    function validateEmail(string $email, string $path) : void
+    function validateEmail(string $email, string $path): void
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             displayMessage('The email you entered is not valid. Please try again.');
@@ -119,7 +119,6 @@ if (!function_exists('validateEmail')) {
         }
     }
 }
-
 
 if (!function_exists('getUserById')) {
     /**
@@ -183,12 +182,12 @@ if (!function_exists('getUserPosts')) {
         $username = sanitizeUsername($_GET['username']);
         $query = 'SELECT posts.id, posts.user_id, media, description, date, likes, username, avatar FROM posts
         INNER JOIN users ON posts.user_id = users.id WHERE username = :username
-        ORDER BY posts.id DESC';
+        ORDER BY posts.date DESC';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':username', $username, PDO::PARAM_STR);
         $statement->execute();
         $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-        if(!$posts) {
+        if (!$posts) {
             $posts = getAllPosts($pdo);
         }
         return $posts;
@@ -219,7 +218,7 @@ if (!function_exists('isLikedByUser')) {
 }
 if (!function_exists('getComments')) {
     /**
-     * Gets comments from database
+     * Gets comments from database.
      *
      * @param int $postId
      *
@@ -241,7 +240,7 @@ if (!function_exists('getComments')) {
 }
 if (!function_exists('getProfileById')) {
     /**
-     * Gets profile information from database
+     * Gets profile information from database.
      *
      * @param int $profileId
      *
@@ -262,15 +261,15 @@ if (!function_exists('getProfileById')) {
 }
 if (!function_exists('getPostsCountById')) {
     /**
-     * Gets post count information from database
+     * Gets post count information from database.
      *
      * @param int $profileId
      *
      * @param PDO $pdo
      *
-     * @return string
+     * @return int
      */
-    function getPostsCountById(int $profileId, PDO $pdo): string
+    function getPostsCountById(int $profileId, PDO $pdo): int
     {
         $query = 'SELECT count(id) AS posts FROM posts
         WHERE user_id = :profileId';
@@ -278,7 +277,7 @@ if (!function_exists('getPostsCountById')) {
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
         $statement->execute();
         $postsCount = $statement->fetch(PDO::FETCH_ASSOC);
-        return $postsCount['posts'];
+        return (int) $postsCount['posts'];
     }
 }
 if (!function_exists('getFollowersCountById')) {
@@ -290,9 +289,9 @@ if (!function_exists('getFollowersCountById')) {
      *
      * @param PDO $pdo
      *
-     * @return string
+     * @return int
      */
-    function getFollowersCountById(int $profileId, PDO $pdo): string
+    function getFollowersCountById(int $profileId, PDO $pdo): int
     {
         $query = 'SELECT count(user_id) -1 AS followers FROM followers
         WHERE follow_id = :profileId;';
@@ -300,20 +299,20 @@ if (!function_exists('getFollowersCountById')) {
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
         $statement->execute();
         $followCount = $statement->fetch(PDO::FETCH_ASSOC);
-        return $followCount['followers'];
+        return (int) $followCount['followers'];
     }
 }
 if (!function_exists('getFollowingCountById')) {
     /**
-     *Gets following count information from database
+     * Gets following count information from database
      *
      * @param int $profileId
      *
      * @param PDO $pdo
      *
-     * @return string
+     * @return int
      */
-    function getFollowingCountById(int $profileId, PDO $pdo): string
+    function getFollowingCountById(int $profileId, PDO $pdo): int
     {
         $query = 'SELECT count(follow_id) -1 AS following FROM followers
         WHERE user_id = :profileId;';
@@ -321,7 +320,7 @@ if (!function_exists('getFollowingCountById')) {
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
         $statement->execute();
         $followingCount = $statement->fetch(PDO::FETCH_ASSOC);
-        return $followingCount['following'];
+        return (int) $followingCount['following'];
     }
 }
 
@@ -396,7 +395,7 @@ if (!function_exists('isFollowed')) {
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
         $statement->execute();
         $isFollowed = $statement->fetch(PDO::FETCH_ASSOC);
-        if($isFollowed) {
+        if ($isFollowed) {
             return true;
         }
         return false;
@@ -404,7 +403,7 @@ if (!function_exists('isFollowed')) {
 }
 if (!function_exists('dateFormat')) {
     /**
-     * Formats date to show how many days ago since image was posted
+     * Formats date to show how many days ago since posted.
      *
      * @param int $date
      *
@@ -412,14 +411,13 @@ if (!function_exists('dateFormat')) {
      */
     function dateFormat(int $date): string
     {
-
         $now = date('Y-m-d');
         $postDate = jdtogregorian($date);
         $start = strtotime($now);
         $end = strtotime($postDate);
-        $daysBetween = (int) ceil(abs($end - $start) / 86400);
+        $daysBetween = (int)ceil(abs($end - $start) / 86400);
 
-        if ($daysBetween === 1) {
+        if ($daysBetween <= 1) {
             return "TODAY";
         } elseif ($daysBetween <= 14) {
             return "$daysBetween DAYS AGO";

@@ -9,6 +9,7 @@ if (isset($_GET['id'])) {
     $followId = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 
     if ($userId !== $followId) {
+
         // Checks if user is in the followers table
         $query = 'SELECT user_id FROM followers
         WHERE user_id = :userId AND follow_id = :followId';

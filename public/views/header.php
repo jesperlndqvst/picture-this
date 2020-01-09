@@ -1,7 +1,5 @@
-<?php
+<?php require __DIR__ . '/../app/autoload.php'; ?>
 
-require __DIR__ . '/../app/autoload.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 

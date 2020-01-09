@@ -3,9 +3,6 @@
 declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
-
-// In this file we delete new posts in the database.
-
 authenticateUser();
 
 if (isset($_GET['id'])) {
@@ -32,9 +29,9 @@ if (isset($_GET['id'])) {
     $statement->execute();
 
     if (!$statement) {
-        displayMessage('Couldnt update settings!');
+        displayMessage("Couldn't delete post. Try again.");
     } else {
-        displayMessage('Settings updated!');
+        displayMessage('Post deleted.');
     }
 }
 

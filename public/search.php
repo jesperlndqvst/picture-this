@@ -1,7 +1,8 @@
-<?php require __DIR__ . '/views/header.php'; ?>
-<?php require __DIR__ . '/views/navigation.php'; ?>
-
-<?php authenticateUser() ?>
+<?php
+require __DIR__ . '/views/header.php';
+require __DIR__ . '/views/navigation.php';
+authenticateUser();
+?>
 
 <article class="search">
 
@@ -16,7 +17,7 @@
         </div>
     <?php endif; ?>
 
-    <form action="search.php" method="get">
+    <form class="form form--search" action="search.php" method="get">
         <input class="form__input" type="text" name="search" placeholder="Username" value autocomplete="off" required>
         <button class="btn btn--lg" type="submit">Search</button>
     </form>
