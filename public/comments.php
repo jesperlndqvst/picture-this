@@ -1,9 +1,9 @@
-<?php require __DIR__ . '/views/header.php'; ?>
-<?php require __DIR__ . '/views/navigation.php'; ?>
+<?php
+require __DIR__ . '/views/header.php';
+require __DIR__ . '/views/navigation.php';
+authenticateUser();
 
-<?php authenticateUser() ?>
-
-<?php if (isset($_GET['id'])) {
+if (isset($_GET['id'])) {
     $postId = $_GET['id'];
 }
 ?>

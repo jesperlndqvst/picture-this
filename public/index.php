@@ -1,8 +1,6 @@
 <?php
-
 require __DIR__ . '/views/header.php';
 require __DIR__ . '/views/navigation.php';
-
 authenticateUser();
 $user = getUserById((int) $_SESSION['user']['id'], $pdo);
 
@@ -11,7 +9,6 @@ if (isset($_GET['username'])) {
 } else {
     $posts = getAllPosts($pdo);
 }
-
 ?>
 
 <?php if (!$posts) : ?>

@@ -1,8 +1,9 @@
-<?php require __DIR__ . '/views/header.php'; ?>
-<?php require __DIR__ . '/views/navigation.php'; ?>
-
-<?php authenticateUser() ?>
-<?php $user = getUserById((int) $_SESSION['user']['id'], $pdo) ?>
+<?php
+require __DIR__ . '/views/header.php';
+require __DIR__ . '/views/navigation.php';
+authenticateUser();
+$user = getUserById((int) $_SESSION['user']['id'], $pdo)
+?>
 
 <article class="settings">
 

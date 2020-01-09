@@ -120,7 +120,6 @@ if (!function_exists('validateEmail')) {
     }
 }
 
-
 if (!function_exists('getUserById')) {
     /**
      * Gets user information from database.
@@ -183,7 +182,7 @@ if (!function_exists('getUserPosts')) {
         $username = sanitizeUsername($_GET['username']);
         $query = 'SELECT posts.id, posts.user_id, media, description, date, likes, username, avatar FROM posts
         INNER JOIN users ON posts.user_id = users.id WHERE username = :username
-        ORDER BY posts.id DESC';
+        ORDER BY posts.date DESC';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':username', $username, PDO::PARAM_STR);
         $statement->execute();
@@ -412,12 +411,11 @@ if (!function_exists('dateFormat')) {
      */
     function dateFormat(int $date): string
     {
-
         $now = date('Y-m-d');
         $postDate = jdtogregorian($date);
         $start = strtotime($now);
         $end = strtotime($postDate);
-        $daysBetween = (int) ceil(abs($end - $start) / 86400);
+        $daysBetween = (int)ceil(abs($end - $start) / 86400);
 
         if ($daysBetween <= 1) {
             return "TODAY";

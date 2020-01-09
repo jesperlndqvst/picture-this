@@ -31,7 +31,6 @@ if (isset($_POST['submit'], $_POST['description'])) {
                 $fileNameNew = uniqid('', true) . "." . $fileActialExt;
                 $fileDestination = __DIR__ . '/../uploads/posts/' . $fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);
-                displayMessage('Your file is uploaded!');
                 $media =  $fileNameNew;
 
                 // Updates user data
@@ -51,7 +50,7 @@ if (isset($_POST['submit'], $_POST['description'])) {
     } else {
         displayMessage('You cannot upload files of this type!');
     }
-    redirect('/store.php');
+    redirect('/');
 }
 
 redirect('/');

@@ -153,12 +153,12 @@
     display: none;
 }
 
-
 @media only screen and (min-width: 600px) {
     .post__img {
         height: 500px;
     }
 }
+
 @media only screen and (min-width: 800px) {
     .post__img {
         height: 700px;
