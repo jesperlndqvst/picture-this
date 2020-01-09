@@ -22,7 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem var(--padding-container);
+    padding: 0.5rem;
 }
 
 .post__user-info div {
@@ -58,7 +58,7 @@
 }
 
 .post__post-info {
-    padding: 0.5rem var(--padding-container);
+    padding: 0.7rem;
 }
 
 .post__post-info a {
@@ -70,7 +70,7 @@
     align-items: baseline;
 }
 .form--likes p {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
 }
 
 .form--likes button {
