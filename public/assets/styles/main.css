@@ -43,6 +43,10 @@ textarea {
     font-weight: bold;
 }
 
+.text-date {
+    font-size: 0.8rem;
+}
+
 .btn {
     padding: 0.7rem 0;
     font-size: 0.7rem;

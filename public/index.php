@@ -83,7 +83,7 @@ if (isset($_GET['username'])) {
                 <?php endif; ?>
 
                 <a href="comments.php?id=<?= $post['id'] ?>"><i class="far fa-comment"></i> Comment</a>
-                <p class="post-date"><?= dateFormat($post['date']) ?></p>
+                <p class="text-date"><?= dateFormat($post['date']) ?></p>
 
             </div>
 

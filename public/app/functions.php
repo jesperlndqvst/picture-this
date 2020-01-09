@@ -229,7 +229,7 @@ if (!function_exists('getComments')) {
      */
     function getComments(int $postId, PDO $pdo): array
     {
-        $query = 'SELECT username, comment, avatar, date(date) AS date
+        $query = 'SELECT username, comment, avatar, date AS date
         FROM comments INNER JOIN users ON comments.user_id = users.id
         WHERE post_id = :postId';
         $statement = $pdo->prepare($query);
@@ -412,6 +412,7 @@ if (!function_exists('dateFormat')) {
      */
     function dateFormat(int $date): string
     {
+
         $now = date('Y-m-d');
         $postDate = jdtogregorian($date);
         $start = strtotime($now);

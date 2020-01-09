@@ -65,11 +65,6 @@
     padding: 0.7rem;
 }
 
-
-.post-date {
-    font-size: 0.8rem;
-}
-
 .form--likes {
     display: flex;
     align-items: baseline;
