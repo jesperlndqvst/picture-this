@@ -21,6 +21,11 @@ if (isset($_POST['submit'])) {
 
     $allowed =  ['jpg', 'jpeg', 'png', 'svg', 'pdf'];
 
+    if ($fileSize == 0) {
+        displayMessage('Please choose a file.');
+        redirect('/settings.php');
+    }
+
     if (in_array($fileActialExt, $allowed)) {
         if ($fileError === 0) {
             if ($fileSize < 3000000) {
