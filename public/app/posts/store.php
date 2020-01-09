@@ -22,7 +22,7 @@ if (isset($_POST['submit'], $_POST['description'])) {
 
     if (in_array($fileActialExt, $allowed)) {
         if ($fileError === 0) {
-            if ($fileSize < 300000) {
+            if ($fileSize < 30000000) {
                 $fileNameNew = uniqid('', true) . "." . $fileActialExt;
                 $fileDestination = __DIR__ . '/../uploads/posts/' . $fileNameNew;
                 move_uploaded_file($fileTmpName, $fileDestination);

@@ -13,6 +13,13 @@ if (isset($_GET['username'])) {
 
 ?>
 
+<?php if (!$posts) : ?>
+    <div class="welcome">
+        <p>Welcome, <?= $user['username'] ?>!</p>
+        <a href="store.php">Add new post</a>
+    </div>
+<?php endif; ?>
+
 
 <article class="posts">
 
@@ -21,13 +28,6 @@ if (isset($_GET['username'])) {
             <p><?= $error ?></p>
         <?php endforeach; ?>
         <?php unset($_SESSION['errors']); ?>
-    <?php endif; ?>
-
-
-    <?php if (!$posts) : ?>
-        <h1><?= $config['title']; ?></h1>
-        <p>Welcome, <?= $user['username'] ?>!</p>
-        <a href="store.php">Add a new post</a>
     <?php endif; ?>
 
     <?php foreach ($posts as $post) : ?>

@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
     if (in_array($fileActialExt, $allowed)) {
         if ($fileError === 0) {
-            if ($fileSize < 300000) {
+            if ($fileSize < 3000000) {
 
                 // Delete old file
                 $standardAvatar = 'undefined.svg';
