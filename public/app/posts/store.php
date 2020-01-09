@@ -20,6 +20,11 @@ if (isset($_POST['submit'], $_POST['description'])) {
 
     $allowed =  ['jpg', 'jpeg', 'png', 'svg', 'pdf'];
 
+    if ($fileSize == 0) {
+        displayMessage('Please choose a file.');
+        redirect('/store.php');
+    }
+
     if (in_array($fileActialExt, $allowed)) {
         if ($fileError === 0) {
             if ($fileSize < 30000000) {

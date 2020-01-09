@@ -10,7 +10,7 @@ if (!function_exists('redirect')) {
      *
      * @return void
      */
-    function redirect(string $path)
+    function redirect(string $path) : void
     {
         header("Location: ${path}");
         exit;
@@ -23,7 +23,7 @@ if (!function_exists('authenticateUser')) {
      *
      * @return void
      */
-    function authenticateUser()
+    function authenticateUser() : void
     {
         if (!isset($_SESSION['user'])) {
             redirect('/login.php');
@@ -39,7 +39,7 @@ if (!function_exists('sanitizeUsername')) {
      *
      * @return string
      */
-    function sanitizeUsername($username)
+    function sanitizeUsername(string $username): string
     {
         return filter_var(trim($username), FILTER_SANITIZE_STRING);
     }
@@ -53,7 +53,7 @@ if (!function_exists('sanitizeEmail')) {
      *
      * @return string
      */
-    function sanitizeEmail($email)
+    function sanitizeEmail(string $email) : string
     {
         return filter_var(strtolower(trim($email)), FILTER_SANITIZE_EMAIL);
     }
@@ -66,7 +66,7 @@ if (!function_exists('sanitizeString')) {
      *
      * @return string
      */
-    function sanitizeString($string)
+    function sanitizeString($string) : string
     {
         return filter_var($string, FILTER_SANITIZE_STRING);
     }
@@ -80,9 +80,23 @@ if (!function_exists('hashPassword')) {
      *
      * @return string
      */
-    function hashPassword($password)
+    function hashPassword(string $password) : string
     {
         return password_hash($password, PASSWORD_DEFAULT);
+    }
+}
+
+if (!function_exists('displayMessage')) {
+    /**
+     * Displays message to user.
+     *
+     * @param string $message
+     *
+     * @return void
+     */
+    function displayMessage(string $message) : void
+    {
+        $_SESSION['errors'][] = "${message}";
     }
 }
 
@@ -97,40 +111,27 @@ if (!function_exists('validateEmail')) {
      *
      * @return void
      */
-    function validateEmail($email, $path)
+    function validateEmail(string $email, string $path) : void
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $_SESSION['errors'][] = 'Not a valid email!';
+            displayMessage('The email you entered is not valid. Please try again.');
             redirect("${path}");
         }
     }
 }
 
-if (!function_exists('displayMessage')) {
-    /**
-     * Displays message.
-     *
-     * @param string $message
-     *
-     * @return void
-     */
-    function displayMessage($message)
-    {
-        $_SESSION['errors'][] = "${message}";
-    }
-}
 
 if (!function_exists('getUserById')) {
     /**
-     * Gets user information from database
+     * Gets user information from database.
      *
-     * @param string $id
+     * @param int $id
      *
      * @param PDO $pdo
      *
      * @return array
      */
-    function getUserById(string $id, PDO $pdo): array
+    function getUserById(int $id, PDO $pdo): array
     {
         $query = 'SELECT * FROM users WHERE id = :id';
         $statement = $pdo->prepare($query);
@@ -146,7 +147,7 @@ if (!function_exists('getUserById')) {
 }
 if (!function_exists('getAllPosts')) {
     /**
-     * Gets all posts from database
+     * Gets all posts from database.
      *
      * @param PDO $pdo
      *
@@ -155,7 +156,7 @@ if (!function_exists('getAllPosts')) {
     function getAllPosts(PDO $pdo): array
     {
         $id = $_SESSION['user']['id'];
-        $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date(date), likes, username, avatar
+        $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date, likes, username, avatar
         FROM posts
         INNER JOIN users ON posts.user_id = users.id
         INNER JOIN followers ON posts.user_id = followers.follow_id
@@ -169,7 +170,7 @@ if (!function_exists('getAllPosts')) {
 }
 if (!function_exists('getUserPosts')) {
     /**
-     * Gets user posts from database
+     * Gets user posts from database.
      *
      * @param string $username
      *
@@ -180,7 +181,7 @@ if (!function_exists('getUserPosts')) {
     function getUserPosts(string $username, PDO $pdo): array
     {
         $username = sanitizeUsername($_GET['username']);
-        $query = 'SELECT posts.id, posts.user_id, media, description, date(date), likes, username, avatar FROM posts
+        $query = 'SELECT posts.id, posts.user_id, media, description, date, likes, username, avatar FROM posts
         INNER JOIN users ON posts.user_id = users.id WHERE username = :username
         ORDER BY posts.id DESC';
         $statement = $pdo->prepare($query);
@@ -195,7 +196,7 @@ if (!function_exists('getUserPosts')) {
 }
 if (!function_exists('isLikedByUser')) {
     /**
-     * Gets likes from database
+     * Gets likes from database.
      *
      * @param int $postId
      *
@@ -228,7 +229,7 @@ if (!function_exists('getComments')) {
      */
     function getComments(int $postId, PDO $pdo): array
     {
-        $query = 'SELECT username, comment, avatar, date(date) AS date
+        $query = 'SELECT username, comment, avatar, date AS date
         FROM comments INNER JOIN users ON comments.user_id = users.id
         WHERE post_id = :postId';
         $statement = $pdo->prepare($query);
@@ -368,7 +369,8 @@ if (!function_exists('getSearchResult')) {
         $searchResults = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$searchResults) {
-            displayMessage('No users found');
+            displayMessage('No users found.');
+            redirect('search.php');
         }
         return $searchResults;
     }
@@ -377,9 +379,9 @@ if (!function_exists('isFollowed')) {
     /**
      * Checks if user is followed
      *
-     * @param userId $userId
+     * @param int $userId
      *
-     * @param profileId $profileId
+     * @param int $profileId
      *
      * @param PDO $pdo
      *
@@ -398,5 +400,31 @@ if (!function_exists('isFollowed')) {
             return true;
         }
         return false;
+    }
+}
+if (!function_exists('dateFormat')) {
+    /**
+     * Formats date to show how many days ago since image was posted
+     *
+     * @param int $date
+     *
+     * @return int
+     */
+    function dateFormat(int $date): string
+    {
+
+        $now = date('Y-m-d');
+        $postDate = jdtogregorian($date);
+        $start = strtotime($now);
+        $end = strtotime($postDate);
+        $daysBetween = (int) ceil(abs($end - $start) / 86400);
+
+        if ($daysBetween === 1) {
+            return "TODAY";
+        } elseif ($daysBetween <= 14) {
+            return "$daysBetween DAYS AGO";
+        } else {
+            return $postDate;
+        }
     }
 }

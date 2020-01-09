@@ -4,7 +4,7 @@ require __DIR__ . '/views/header.php';
 require __DIR__ . '/views/navigation.php';
 
 authenticateUser();
-$user = getUserById($_SESSION['user']['id'], $pdo);
+$user = getUserById((int) $_SESSION['user']['id'], $pdo);
 if (isset($_GET['username'])) {
     $posts = getUserPosts($_GET['username'], $pdo);
 } else {
@@ -24,10 +24,12 @@ if (isset($_GET['username'])) {
 <article class="posts">
 
     <?php if (isset($_SESSION['errors'])) : ?>
-        <?php foreach ($_SESSION['errors'] as $error) : ?>
-            <p><?= $error ?></p>
-        <?php endforeach; ?>
-        <?php unset($_SESSION['errors']); ?>
+        <div class="errors">
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <p><?= $error ?></p>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']); ?>
+        </div>
     <?php endif; ?>
 
     <?php foreach ($posts as $post) : ?>
@@ -57,7 +59,6 @@ if (isset($_GET['username'])) {
                 </form>
 
                 <p><?= $post['description'] ?></p>
-                <p><?= $post['date(date)'] ?></p>
 
                 <?php if ($post['user_id'] === $user['id']) : ?>
                     <div class="post-edit hidden">
@@ -81,7 +82,9 @@ if (isset($_GET['username'])) {
                     </div>
                 <?php endif; ?>
 
-                <a href="comments.php?id=<?= $post['id'] ?>">Comment...</a>
+                <a href="comments.php?id=<?= $post['id'] ?>"><i class="far fa-comment"></i> Comment</a>
+                <p class="text-date"><?= dateFormat($post['date']) ?></p>
+
             </div>
 
         </div>

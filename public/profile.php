@@ -46,7 +46,7 @@
         <div class="profile-posts">
             <?php foreach ($posts as $post) : ?>
                 <div class="profile-posts__img">
-                    <a href="/?<?= $profile['username'] ?> #<?= $post['id'] ?>">
+                    <a href="/?username=<?= $profile['username'] ?>#<?= $post['id'] ?>">
                         <img src="app/uploads/posts/<?= $post['media'] ?>" alt="post image">
                     </a>
                 </div>

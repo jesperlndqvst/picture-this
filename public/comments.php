@@ -23,7 +23,7 @@
             <div class="comments-content__text">
                 <p class="text-bold"><?= $comment['username'] ?></p>
                 <p><?= $comment['comment'] ?></p>
-                <p><?= $comment['date'] ?></p>
+                <p class="text-date"><?= dateFormat($comment['date']) ?></p>
             </div>
         </div>
     <?php endforeach; ?>

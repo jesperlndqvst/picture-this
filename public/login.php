@@ -4,10 +4,12 @@
     <h1 class="heading heading--lg"><?= $config['title']; ?></h1>
 
     <?php if (isset($_SESSION['errors'])) : ?>
-        <?php foreach ($_SESSION['errors'] as $error) : ?>
-            <p><?= $error ?></p>
-        <?php endforeach; ?>
-        <?php unset($_SESSION['errors']); ?>
+        <div class="errors">
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <p><?= $error ?></p>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']); ?>
+        </div>
     <?php endif; ?>
 
     <form class="form form--login" action="app/users/login.php" method="post">

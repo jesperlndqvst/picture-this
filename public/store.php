@@ -4,15 +4,15 @@
 
 <article class="store">
 
-
-
     <h2 class="heading-l">New post</h2>
 
     <?php if (isset($_SESSION['errors'])) : ?>
-        <?php foreach ($_SESSION['errors'] as $error) : ?>
-            <p><?= $error ?></p>
-        <?php endforeach; ?>
-        <?php unset($_SESSION['errors']); ?>
+        <div class="errors">
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <p><?= $error ?></p>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']); ?>
+        </div>
     <?php endif; ?>
 
     <form class="form form--store" action="app/posts/store.php" method="POST" enctype="multipart/form-data">

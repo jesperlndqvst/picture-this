@@ -17,10 +17,15 @@
 
 .comments-content img {
     width: 75px;
+    min-width: 75px;
     height: 75px;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 .comments-content__text {
     margin-left: 1rem;
 }
+

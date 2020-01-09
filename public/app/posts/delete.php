@@ -10,13 +10,13 @@ authenticateUser();
 
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-    $user_id = $_SESSION['user']['id'];
+    $userId = $_SESSION['user']['id'];
 
     // Delete file
-    $query = 'SELECT media FROM posts WHERE id = :id AND user_id = :user_id';
+    $query = 'SELECT media FROM posts WHERE id = :id AND user_id = :userId';
     $statement = $pdo->prepare($query);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
     $statement->execute();
     $post = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -25,10 +25,10 @@ if (isset($_GET['id'])) {
     }
 
     // Delete post
-    $query = 'DELETE FROM posts WHERE id = :id AND user_id = :user_id';
+    $query = 'DELETE FROM posts WHERE id = :id AND user_id = :userId';
     $statement = $pdo->prepare($query);
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
     $statement->execute();
 
     if (!$statement) {

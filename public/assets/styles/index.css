@@ -13,6 +13,10 @@
     font-size: 2rem;
 }
 
+.errors {
+    margin-top: 1rem;
+}
+
 .posts {
     max-width: 1200px;
     margin: auto;
@@ -22,7 +26,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem var(--padding-container);
+    padding: 0.5rem;
 }
 
 .post__user-info div {
@@ -52,14 +56,13 @@
 .post__img {
     display: block;
     width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .post__post-info {
-    padding: 0.5rem var(--padding-container);
-}
-
-.post__post-info a {
-    text-decoration: underline;
+    padding: 0.7rem;
 }
 
 .form--likes {
@@ -67,7 +70,7 @@
     align-items: baseline;
 }
 .form--likes p {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
 }
 
 .form--likes button {
@@ -148,4 +151,16 @@
 
 .hidden {
     display: none;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .post__img {
+        height: 500px;
+    }
+}
+@media only screen and (min-width: 800px) {
+    .post__img {
+        height: 700px;
+    }
 }
