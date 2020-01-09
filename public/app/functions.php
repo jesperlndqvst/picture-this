@@ -156,7 +156,7 @@ if (!function_exists('getAllPosts')) {
     function getAllPosts(PDO $pdo): array
     {
         $id = $_SESSION['user']['id'];
-        $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date(date), likes, username, avatar
+        $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date, likes, username, avatar
         FROM posts
         INNER JOIN users ON posts.user_id = users.id
         INNER JOIN followers ON posts.user_id = followers.follow_id
@@ -181,7 +181,7 @@ if (!function_exists('getUserPosts')) {
     function getUserPosts(string $username, PDO $pdo): array
     {
         $username = sanitizeUsername($_GET['username']);
-        $query = 'SELECT posts.id, posts.user_id, media, description, date(date), likes, username, avatar FROM posts
+        $query = 'SELECT posts.id, posts.user_id, media, description, date, likes, username, avatar FROM posts
         INNER JOIN users ON posts.user_id = users.id WHERE username = :username
         ORDER BY posts.id DESC';
         $statement = $pdo->prepare($query);
@@ -379,9 +379,9 @@ if (!function_exists('isFollowed')) {
     /**
      * Checks if user is followed
      *
-     * @param userId $userId
+     * @param int $userId
      *
-     * @param profileId $profileId
+     * @param int $profileId
      *
      * @param PDO $pdo
      *
@@ -400,5 +400,30 @@ if (!function_exists('isFollowed')) {
             return true;
         }
         return false;
+    }
+}
+if (!function_exists('dateFormat')) {
+    /**
+     * Formats date to show how many days ago since image was posted
+     *
+     * @param int $date
+     *
+     * @return int
+     */
+    function dateFormat(int $date): string
+    {
+        $now = date('Y-m-d');
+        $postDate = jdtogregorian($date);
+        $start = strtotime($now);
+        $end = strtotime($postDate);
+        $daysBetween = (int) ceil(abs($end - $start) / 86400);
+
+        if ($daysBetween === 1) {
+            return "TODAY";
+        } elseif ($daysBetween <= 14) {
+            return "$daysBetween DAYS AGO";
+        } else {
+            return $postDate;
+        }
     }
 }

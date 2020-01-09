@@ -13,6 +13,10 @@
     font-size: 2rem;
 }
 
+.errors {
+    margin-top: 1rem;
+}
+
 .posts {
     max-width: 1200px;
     margin: auto;
@@ -61,6 +65,10 @@
     padding: 0.7rem;
 }
 
+
+.post-date {
+    font-size: 0.8rem;
+}
 
 .form--likes {
     display: flex;

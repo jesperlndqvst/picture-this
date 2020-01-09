@@ -59,7 +59,6 @@ if (isset($_GET['username'])) {
                 </form>
 
                 <p><?= $post['description'] ?></p>
-                <p><?= $post['date(date)'] ?></p>
 
                 <?php if ($post['user_id'] === $user['id']) : ?>
                     <div class="post-edit hidden">
@@ -84,6 +83,8 @@ if (isset($_GET['username'])) {
                 <?php endif; ?>
 
                 <a href="comments.php?id=<?= $post['id'] ?>"><i class="far fa-comment"></i> Comment</a>
+                <p class="post-date"><?= dateFormat($post['date']) ?></p>
+
             </div>
 
         </div>
