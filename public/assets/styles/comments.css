@@ -10,18 +10,35 @@
 }
 
 .comments-content {
+    display: flex;
+    justify-content: space-between;
     margin-top: 1rem;
+}
+
+.comments-content__left {
     display: flex;
     align-items: center;
 }
 
-.comments-content img {
+.comments-content__left img {
     width: 75px;
     min-width: 75px;
     height: 75px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
+    display: block;
+}
+
+.comments-content__right {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.comments-content__right img {
+    width: 30px;
+    height: 30px;
     display: block;
 }
 
