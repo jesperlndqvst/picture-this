@@ -193,6 +193,31 @@ if (!function_exists('getUserPosts')) {
         return $posts;
     }
 }
+if (!function_exists('isPostAuthor')) {
+    /**
+     * Gets user posts from database.
+     *
+     * @param int $postId
+     *
+     * @param PDO $pdo
+     *
+     * @return bool
+     */
+    function isPostAuthor(int $postId, PDO $pdo): bool
+    {
+        $userId = $_SESSION['user']['id'];
+        $query = 'SELECT * FROM posts WHERE id = :postId AND user_id = :userId';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
+        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+        $statement->execute();
+        $isPostAuthor = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$isPostAuthor) {
+            return false;
+        }
+        return true;
+    }
+}
 if (!function_exists('isLikedByUser')) {
     /**
      * Gets likes from database.
@@ -228,11 +253,12 @@ if (!function_exists('getComments')) {
      */
     function getComments(int $postId, PDO $pdo): array
     {
-        $query = 'SELECT DISTINCT username, comment, comments.id AS id, avatar, comments.date, posts.user_id
+        $query = 'SELECT DISTINCT username, comment, comments.id AS comment_id,
+        comments.user_id AS comment_author, avatar, comments.date
         FROM comments
         INNER JOIN users ON comments.user_id = users.id
-        INNER JOIN posts ON comments.user_id = posts.user_id
-        WHERE post_id = :postId';
+        INNER Join posts ON comments.user_id = posts.user_id
+        WHERE post_id = :postId ORDER BY comments.date DESC';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':postId', $postId, PDO::PARAM_INT);
         $statement->execute();
@@ -419,7 +445,7 @@ if (!function_exists('dateFormat')) {
         $end = strtotime($postDate);
         $daysBetween = (int)ceil(abs($end - $start) / 86400);
 
-        if ($daysBetween <= 1) {
+        if ($daysBetween < 1) {
             return "TODAY";
         } elseif ($daysBetween <= 14) {
             return "$daysBetween DAYS AGO";

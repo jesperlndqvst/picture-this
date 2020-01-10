@@ -4,9 +4,8 @@ require __DIR__ . '/views/navigation.php';
 authenticateUser();
 $user = getUserById($_SESSION['user']['id'], $pdo);
 
-
 if (isset($_GET['id'])) {
-    $postId = $_GET['id'];
+    $postId = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 }
 $comments = getComments((int) $postId, $pdo);
 
@@ -32,10 +31,18 @@ $comments = getComments((int) $postId, $pdo);
                 </div>
             </div>
             <div class="comments-content__right">
-                 <!-- If comment is writen by user OR if post is written by user -->
-                <?php if ($comment['user_id'] === $user['id']) : ?>
-                    <a href="/app/posts/comments.php?id=<?=$postId?>&&commentId=<?=$comment['id']?>">
-                    <img src="assets/images/delete.svg" alt="delete"></a>
+                <?php if (
+                    $user['id'] === $comment['comment_author'] ||
+                    isPostAuthor($postId, $pdo) === true
+                ) : ?>
+
+                    <form class="form form--comment-delete" action="/app/posts/comments.php?id=<?= $postId ?>" method="post">
+                        <input type="hidden" name="id" value="<?= $comment['comment_id']?>">
+                        <button type="submit" name="submit">
+                            <img src="assets/images/delete.svg" alt="delete">
+                        </button>
+                    </form>
+
                 <?php endif; ?>
             </div>
 

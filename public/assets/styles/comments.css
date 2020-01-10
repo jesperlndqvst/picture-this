@@ -35,6 +35,9 @@
     align-items: center;
     margin-right: 1rem;
 }
+.form--comment-delete button {
+    border: none;
+}
 
 .comments-content__right img {
     width: 30px;
