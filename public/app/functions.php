@@ -445,7 +445,7 @@ if (!function_exists('dateFormat')) {
         $end = strtotime($postDate);
         $daysBetween = (int)ceil(abs($end - $start) / 86400);
 
-        if ($daysBetween < 1) {
+        if ($daysBetween <= 1) {
             return "TODAY";
         } elseif ($daysBetween <= 14) {
             return "$daysBetween DAYS AGO";
