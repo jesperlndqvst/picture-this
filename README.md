@@ -66,7 +66,7 @@ $ git clone https://github.com/jesperlndqvst/picture-this.git
 ```
 2. Change current directory to the cloned repo.
 ```
-$ cd picture-this
+$ cd picture-this/public
 ```
 3. Start your web server (8000 can be changed to any other 4 digits, ex. 1337 also works).
 ```
