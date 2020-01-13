@@ -37,12 +37,14 @@
 }
 .form--comment-delete button {
     border: none;
+    background-color: #FFF;
 }
 
 .comments-content__right img {
     width: 30px;
     height: 30px;
     display: block;
+    background-color: #FFF;
 }
 
 .comments-content__text {
