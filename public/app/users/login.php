@@ -21,6 +21,8 @@ if (isset($_POST['email'], $_POST['password'])) {
     }
     if (password_verify($_POST['password'], $user['password'])) {
         $_SESSION['user']['id'] = $user['id'];
+    } else {
+        displayMessage("There was an error with your email/password combination. Please try again.");
     }
 }
 
