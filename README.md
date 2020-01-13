@@ -74,9 +74,9 @@ $ php -S localhost:8000
 ```
 
 ## Preview
-<img src="https://i.imgur.com/i1SRj8C.png" width="49%" /> <img src="https://i.imgur.com/3xoXMre.png" width="49%" /> 
+<img src="https://i.imgur.com/i1SRj8C.png" width="30%" /> <img src="https://i.imgur.com/3xoXMre.png" width="30%" /> <img src="https://i.imgur.com/C0OsGZy.png" width="30%">
 
-<img src="https://i.imgur.com/C0OsGZy.png" width="49">
+
 
 ## Testers
 * [Daniel Thorsen](https://github.com/DanThor)
