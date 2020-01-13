@@ -73,7 +73,7 @@ School assignment at YRGO. Create an Instagram clone using PHP, SQL, HTML, CSS a
 <img src="https://i.imgur.com/7maKFU0.png" width="100%">
 
 ## Testers
-* [Thomas Sönnerstam](https://github.com/ThomasSonnerstam)
+* [Daniel Thorsen](https://github.com/DanThor)
 * [Betsy Alva Soplin](https://github.com/milliebase)
 * [Henric Björk](https://github.com/henricbjork)
 
