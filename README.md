@@ -62,12 +62,12 @@ School assignment at YRGO. Create an Instagram clone.
 1. Clone this repo using: https://github.com/jesperlndqvst/picture-this.git
 2. Create an account or use an mock account by login with following credentials:
 
-   > email: jdorrington0@hhs.gov
-   > password: jdorrington0@hhs.gov
+> email: jdorrington0@hhs.gov
+> password: jdorrington0@hhs.gov
 
 If you choose to use the mock account you will also need to download [these mock image folders](https://www.dropbox.com/sh/a4myouj4f6mglb5/AAB7S8qowA3BmgN4qtPmnv5ia?dl=0) and put them in following directory: 
 
-   > public/app/uploads/ 
+> public/app/uploads/ 
 
 
 ## Preview
