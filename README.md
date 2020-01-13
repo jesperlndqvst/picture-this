@@ -1,9 +1,7 @@
 # picture-this
-School assignment at YRGO. Create an Instagram clone.
+School assignment at YRGO. Create an Instagram clone using PHP, SQL, HTML, CSS and JavaScript.
 
 ## Assignment instructions
-
-### Create an Instagram clone using PHP, SQL, HTML, CSS and JavaScript
 
 #### Implement the following user stories:
 
@@ -33,6 +31,8 @@ School assignment at YRGO. Create an Instagram clone.
 
 -   As a user I should be able to view a list of posts by users I follow.
 
+-   As a user I should be able to search for users.
+
 -   As a user I'm able to comment on a post.
 
 -   As a user I'm able to edit my comments.
@@ -60,15 +60,12 @@ School assignment at YRGO. Create an Instagram clone.
 
 ## How to use it
 1. Clone this repo using: https://github.com/jesperlndqvst/picture-this.git
-2. Create an account or use an mock account by login with following credentials:
+2. Create an account or log in by using the mock account with following credentials:
 
 > email: jdorrington0@hhs.gov
 > password: jdorrington0@hhs.gov
 
-If you choose to use the mock account you will also need to download [these mock image folders](https://www.dropbox.com/sh/a4myouj4f6mglb5/AAB7S8qowA3BmgN4qtPmnv5ia?dl=0) and put them in following directory: 
-
-> public/app/uploads/ 
-
+ > **Note:** If you choose to use the mock account you will also need to download these [mock image folders](https://www.dropbox.com/sh/a4myouj4f6mglb5/AAB7S8qowA3BmgN4qtPmnv5ia?dl=0) and put them in following directory: public/app/uploads/ 
 
 ## Preview
 <img src="https://i.imgur.com/dlWX8ca.png" width="49%" /> <img src="https://i.imgur.com/rCupKxS.png" width="49%" /> 
