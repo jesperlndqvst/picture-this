@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+*:focus {
+    outline: none;
+}
+
 :root {
     --color-black: #262626;
     --color-light-grey: #fafafa;
@@ -31,6 +35,17 @@ textarea {
    resize: none;
    padding: 0.2rem;
    border: 1px solid var(--color-dark-grey);
+}
+
+.title-container {
+    display: flex;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.title-container img {
+    width: 60px;
+    margin-left: 5px;
 }
 
 .heading-l {

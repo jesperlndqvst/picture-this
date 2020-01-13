@@ -1,7 +1,11 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
 <article class="login">
-    <h1 class="heading heading--lg"><?= $config['title']; ?></h1>
+
+    <div class="title-container">
+        <h1 class="heading heading--lg"><?= $config['title']; ?></h1>
+        <img src="assets/images/camera.svg" alt="camera icon">
+    </div>
 
     <?php if (isset($_SESSION['errors'])) : ?>
         <div class="errors">
@@ -19,6 +23,7 @@
     </form>
 
     <a class="login__signup-link" href="register.php">Don't have an account yet? <span class="text-bold">Sign up.</span></a>
+
 </article>
 
 <?php require __DIR__ . '/views/footer.php'; ?>

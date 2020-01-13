@@ -2,7 +2,10 @@
 
 <article class="register">
 
-    <h1 class="heading heading--lg"><?= $config['title']; ?></h1>
+    <div class="title-container">
+        <h1 class="heading heading--lg"><?= $config['title']; ?></h1>
+        <img src="assets/images/camera.svg" alt="camera icon">
+    </div>
 
     <p class="register__paragraph">Sign up to see photos and videos from your friends.<p>
             <?php if (isset($_SESSION['errors'])) : ?>
