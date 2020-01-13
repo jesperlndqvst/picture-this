@@ -1,9 +1,9 @@
 # picture-this
 School assignment at YRGO. Create an Instagram clone using PHP, SQL, HTML, CSS and JavaScript.
 
-## Assignment instructions
+## User stories
 
-#### Minimum user stories
+#### Minimum
 
 - [x]  As a user I should be able to create an account.
 
