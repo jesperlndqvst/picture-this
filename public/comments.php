@@ -6,6 +6,7 @@ $user = getUserById($_SESSION['user']['id'], $pdo);
 
 if (isset($_GET['id'])) {
     $postId = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    $isPostAuthor = isPostAuthor($postId, $pdo);
 }
 $comments = getComments((int) $postId, $pdo);
 
@@ -33,7 +34,7 @@ $comments = getComments((int) $postId, $pdo);
             <div class="comments-content__right">
                 <?php if (
                     $user['id'] === $comment['comment_author'] ||
-                    isPostAuthor($postId, $pdo) === true
+                    $isPostAuthor
                 ) : ?>
 
                     <form class="form form--comment-delete" action="/app/posts/comments.php?id=<?= $postId ?>" method="post">
