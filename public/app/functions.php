@@ -25,7 +25,7 @@ if (!function_exists('authenticateUser')) {
      */
     function authenticateUser(): void
     {
-        if (!isset($_SESSION['user'])) {
+        if (!isset($_SESSION['user'], $user)) {
             redirect('/login.php');
         }
     }
