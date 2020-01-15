@@ -18,7 +18,7 @@ $comments = getComments((int) $postId, $pdo);
         <input class="form__input" type="text" name="comment" placeholder="Comment" autocomplete="off" required>
         <button class="btn btn--lg" type="submit" name="submit">Comment</button>
     </form>
-    <a href="/?id=<?= $postId ?>"><button class="btn btn--lg" type="submit" name="submit">Return</button></a>
+    <a href="/?#<?= $postId ?>"><button class="btn btn--lg" type="submit" name="submit">Return</button></a>
 
 
     <?php foreach ($comments as $comment) : ?>
