@@ -96,6 +96,8 @@ $ php -S localhost:8000
 * settings.php#12-14 good job on breaking out sanitize into functions.
 * gitignore# you have ignored the uploads posts folder so it didnt exist when i cloned your repo. you could write public/app/uploads/avatars/* and public/app/uploads/posts/* and use gitkeep instead. 
 
+By [Erik Johanesson](https://github.com/Erik-joh)
+
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
