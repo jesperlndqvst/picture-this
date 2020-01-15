@@ -85,7 +85,17 @@ $ php -S localhost:8000
 
 ## Code Review
 
-* lorem lorem lorem
+* register.php#40-44 insted of using bind param you could use execute and to bind multiple variables.
+* index.php#23-30 You could break out the error part into a view and require it in to reduce duplication.
+* main.js#11-17 you could choose diffrent names for classes fas / far to something more descriptive.
+* main.js maybe break up main.js into separate files to easier find the dunction your after.
+* index.php#5 you could set a variable in autoload for $user_id = $_SESSION['user']['id'] if it is set since its used quite a bit.
+* functions.php Great job on breaking up alot of php into functions.
+* functions.php The naming of your functions made it very easy to understand what they did.
+* main.js#12-18 you could use heart.classList.replace(fas,far) instead of first removing then adding.
+* settings.php#12-14 good job on breaking out sanitize into functions.
+* gitignore# you have ignored the uploads posts folder so it didnt exist when i cloned your repo. you could write public/app/uploads/avatars/* and public/app/uploads/posts/* and use gitkeep instead. 
+
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
