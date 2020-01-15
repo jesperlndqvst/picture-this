@@ -51,6 +51,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     $statement->execute();
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     $_SESSION['user']['id'] = $user['id'];
+    $_SESSION['user']['username'] = $user['username'];
 
     // Insert user into followers table
     $id = $user['id'];

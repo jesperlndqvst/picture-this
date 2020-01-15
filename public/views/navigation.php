@@ -1,5 +1,5 @@
 <?php
-authenticateUser();
+authenticateUser($pdo);
 $user = getUserById((int)$_SESSION['user']['id'], $pdo);
 ?>
 

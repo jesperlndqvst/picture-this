@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
-authenticateUser();
+authenticateUser($pdo);
 
 if (isset($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);

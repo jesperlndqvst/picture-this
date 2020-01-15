@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-authenticateUser();
+authenticateUser($pdo);
 $user = getUserById(((int)$_SESSION['user']['id']), $pdo);
 
 // Post comment
