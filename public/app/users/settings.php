@@ -8,7 +8,6 @@ $user = getUserById((int)$_SESSION['user']['id'], $pdo);
 $id = $user['id'];
 
 // Change username, email and biography
-
 if (isset($_POST['username'], $_POST['email'], $_POST['biography'])) {
     $username = sanitizeUsername($_POST['username']);
     $email = sanitizeEmail($_POST['email']);

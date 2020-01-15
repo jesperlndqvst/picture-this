@@ -6,9 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title><?= $config['title']; ?></title>
-
     <link rel="stylesheet" href="/assets/styles/main.css">
     <link rel="stylesheet" href="/assets/styles/register.css">
     <link rel="stylesheet" href="/assets/styles/login.css">
@@ -21,7 +19,6 @@
     <link rel="stylesheet" href="/assets/styles/search.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/4d50ed984c.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>

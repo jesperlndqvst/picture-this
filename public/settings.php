@@ -67,7 +67,4 @@ $user = getUserById((int) $_SESSION['user']['id'], $pdo)
 
 </article>
 
-
-
-
 <?php require __DIR__ . '/views/footer.php'; ?>
