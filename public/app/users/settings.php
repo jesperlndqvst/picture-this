@@ -57,6 +57,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['biography'])) {
         displayMessage('Couldnt update settings!');
     } else {
         displayMessage('Settings updated!');
+        $_SESSION['user']['username'] = $username;
     }
     redirect('/settings.php');
 }
