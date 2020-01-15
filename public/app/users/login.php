@@ -6,7 +6,6 @@ require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['email'], $_POST['password'])) {
     $email = sanitizeEmail($_POST['email']);
-
     validateEmail($email, '/login.php');
 
     $query = 'SELECT * FROM users WHERE email = :email';

@@ -141,7 +141,7 @@ if (!function_exists('getUserById')) {
         if ($user) {
             return $user;
         }
-        return $user = [];
+        redirect('login.php');
     }
 }
 if (!function_exists('getAllPosts')) {
