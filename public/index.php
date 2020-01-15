@@ -18,7 +18,6 @@ if (isset($_GET['username'])) {
     </div>
 <?php endif; ?>
 
-
 <article class="posts">
 
     <?php if (isset($_SESSION['errors'])) : ?>
