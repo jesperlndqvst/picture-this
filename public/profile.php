@@ -1,7 +1,7 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 <?php require __DIR__ . '/views/navigation.php'; ?>
 
-<?php authenticateUser() ?>
+<?php authenticateUser($pdo) ?>
 <?php $user = getUserById($_SESSION['user']['id'], $pdo) ?>
 
 

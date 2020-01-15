@@ -21,12 +21,26 @@ if (!function_exists('authenticateUser')) {
     /**
      * Redirect the user to the login page if the user has not logged in.
      *
+     * @param PDO $pdo
+     *
      * @return void
      */
-    function authenticateUser(): void
+    function authenticateUser(PDO $pdo): void
     {
-        if (!isset($_SESSION['user'])) {
+        if (!isset($_SESSION['user']['id'], $_SESSION['user']['username'])) {
             redirect('/login.php');
+        }
+        $id = $_SESSION['user']['id'];
+        $username = $_SESSION['user']['username'];
+        $query = 'SELECT * FROM users WHERE id = :id AND username = :username';
+        $statement = $pdo->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':username', $username, PDO::PARAM_STR);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user) {
+            redirect('login.php');
         }
     }
 }
@@ -443,7 +457,7 @@ if (!function_exists('dateFormat')) {
         $postDate = jdtogregorian($date);
         $start = strtotime($now);
         $end = strtotime($postDate);
-        $daysBetween = (int)ceil(abs($end - $start) / 86400);
+        $daysBetween = (int) ceil(abs($end - $start) / 86400);
 
         if ($daysBetween <= 1) {
             return "TODAY";
