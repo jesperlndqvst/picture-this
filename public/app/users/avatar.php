@@ -8,7 +8,6 @@ $user = getUserById((int) $_SESSION['user']['id'], $pdo);
 $id = $user['id'];
 
 // Change avatar image
-
 if (isset($_POST['submit'])) {
     $file = $_FILES['file'];
     $fileName = $file['name'];

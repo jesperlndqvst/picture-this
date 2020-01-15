@@ -7,8 +7,6 @@ require __DIR__ . '/../autoload.php';
 authenticateUser();
 $user = getUserById(((int)$_SESSION['user']['id']), $pdo);
 
-
-
 // Post comment
 
 if(isset($_GET['id'], $_POST['comment'])) {

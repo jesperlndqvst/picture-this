@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-
-// Change post description
-
 if (isset($_POST['description'], $_GET['id'])) {
     $description = sanitizeString($_POST['description']);
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
