@@ -58,6 +58,12 @@ School assignment at YRGO. Create an Instagram clone using PHP, SQL, HTML, CSS a
 
 - [x] The project must be tested on at least two of your classmates computers.
 
+## Todo
+- [ ] Update search function to perform a live search on keydown.
+> **Note:** It should update first after user has entered three keys.
+- [ ] As a user I'm able to delete my account along with all posts and comments..
+
+
 ## How to use it
 
 1. Clone this repository to your directory through the terminal.
