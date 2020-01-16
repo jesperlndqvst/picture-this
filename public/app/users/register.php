@@ -52,14 +52,6 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
     $_SESSION['user']['id'] = $user['id'];
     $_SESSION['user']['username'] = $user['username'];
-
-    // Insert user into followers table
-    $id = $user['id'];
-    $query = 'INSERT INTO followers (user_id, follow_id)
-    VALUES (:id, :id)';
-    $statement = $pdo->prepare($query);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->execute();
 }
 
 redirect('/');

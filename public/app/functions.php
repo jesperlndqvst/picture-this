@@ -171,9 +171,13 @@ if (!function_exists('getAllPosts')) {
         $id = $_SESSION['user']['id'];
         $query = 'SELECT DISTINCT posts.id, posts.user_id, media, description, date, likes, username, avatar
         FROM posts
+        LEFT JOIN followers
+        ON posts.user_id = followers.user_id
+        OR posts.user_id = followers.follow_id
         INNER JOIN users ON posts.user_id = users.id
-        INNER JOIN followers ON posts.user_id = followers.follow_id
-        WHERE followers.user_id = :id OR posts.user_id = :id ORDER BY posts.date DESC';
+        WHERE followers.user_id = :id
+        OR posts.user_id = :id
+        ORDER BY posts.date DESC';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->execute();
@@ -335,7 +339,7 @@ if (!function_exists('getFollowersCountById')) {
      */
     function getFollowersCountById(int $profileId, PDO $pdo): int
     {
-        $query = 'SELECT count(user_id) -1 AS followers FROM followers
+        $query = 'SELECT count(user_id) AS followers FROM followers
         WHERE follow_id = :profileId;';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
@@ -356,7 +360,7 @@ if (!function_exists('getFollowingCountById')) {
      */
     function getFollowingCountById(int $profileId, PDO $pdo): int
     {
-        $query = 'SELECT count(follow_id) -1 AS following FROM followers
+        $query = 'SELECT count(follow_id) AS following FROM followers
         WHERE user_id = :profileId;';
         $statement = $pdo->prepare($query);
         $statement->bindParam(':profileId', $profileId, PDO::PARAM_INT);
