@@ -1,3 +1,6 @@
 .DS_Store
 .vscode
-public/app/uploads
+public/app/uploads/avatars/*
+public/app/uploads/posts/*
+!public/app/uploads/avatars/.gitkeep
+!public/app/uploads/posts/.gitkeep
