@@ -50,8 +50,6 @@ editPosts.forEach(post => {
                 hiddenForm.classList.add('hidden');
             }
         });
-
-
     });
 });
 
@@ -91,4 +89,55 @@ if (avatarForm) {
         };
         reader.readAsDataURL(input.files[0]);
     });
+}
+search();
+
+function search() {
+    const searchResultDiv = document.querySelector('.search-result-container');
+    const searchForm = document.querySelector('.form--search');
+
+    if (searchForm) {
+        searchForm.addEventListener('submit', event => {
+            event.preventDefault();
+        });
+        const searchInput = searchForm.querySelector('.form__input');
+        searchInput.addEventListener('keyup', event => {
+            searchResultDiv.innerHTML = '';
+            const searchString = event.target.value;
+            if (searchString.length > 2) {
+                const searchFormData = new FormData();
+                searchFormData.append('search', searchString);
+                fetch('app/users/search.php', {
+                    method: 'POST',
+                    body: searchFormData
+                })
+                    .then(response => response.json())
+                    .then(searchArray =>
+                        searchArray.forEach(user => {
+                            const id = user.id;
+                            const name = user.username;
+                            const avatar = user.avatar;
+                            const userHtml = stringToHTML(
+                                searchResultStructure(id, name, avatar)
+                            );
+                            searchResultDiv.appendChild(userHtml);
+                        })
+                    );
+            }
+        });
+    }
+}
+function searchResultStructure(id, username, avatar) {
+    return `<a href="/profile.php?id=${id}&username=${username}">
+             <div class="search-result">
+                 <img class="search-result__img" src="app/uploads/avatars/${avatar}" alt="profile image">
+                 <p>${username}</p>
+             </div>
+         </a>`;
+}
+//converts a string to html div
+function stringToHTML(str) {
+    const div = document.createElement('div');
+    div.innerHTML = str;
+    return div.firstChild;
 }
