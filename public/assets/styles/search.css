@@ -13,6 +13,11 @@
     margin-top: 1rem;
 }
 
+.search-result-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .search-result {
     display: flex;
     flex-direction: row;

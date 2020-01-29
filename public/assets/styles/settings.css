@@ -41,7 +41,10 @@ label {
     cursor: pointer;
 }
 
- .settings .btn {
+.settings .btn {
     background-color: var(--color-dark-grey);
     margin-top: 1rem;
+}
+.settings .delete {
+    background-color: var(--color-red);
 }

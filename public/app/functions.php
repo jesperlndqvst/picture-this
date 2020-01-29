@@ -404,7 +404,7 @@ if (!function_exists('getSearchResult')) {
      */
     function getSearchResult(string $search, PDO $pdo): array
     {
-        $search = filter_var($_GET['search'], FILTER_SANITIZE_STRING);
+        $search = filter_var($search, FILTER_SANITIZE_STRING);
         $statement = $pdo->prepare('SELECT username, id, avatar FROM users WHERE username LIKE :search');
         if (!$statement) {
             die(var_dump($pdo->errorInfo()));
@@ -415,8 +415,7 @@ if (!function_exists('getSearchResult')) {
         $searchResults = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$searchResults) {
-            displayMessage('No users found.');
-            redirect('search.php');
+            return [];
         }
         return $searchResults;
     }
