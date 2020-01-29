@@ -27,17 +27,17 @@ School assignment at YRGO. Create an Instagram clone using PHP, SQL, HTML, CSS a
 
 #### Extras: 
 
-- [x]  As a user I should be able to follow and unfollow other users.
+- [x] As a user I should be able to follow and unfollow other users.
 
-- [x]  As a user I should be able to view a list of posts by users I follow.
+- [x] As a user I should be able to view a list of posts by users I follow.
 
-- [x]  As a user I should be able to search for users.
+- [x] As a user I should be able to search for users.
 
 - [x] As a user I'm able to comment on a post.
 
-- [x]  As a user I'm able to edit my comments.
+- [x] As a user I'm able to edit my comments.
 
-- [x]  As a user I'm able to delete my comments.
+- [x] As a user I'm able to delete my comments.
 
 ## Requirements
 
@@ -58,11 +58,15 @@ School assignment at YRGO. Create an Instagram clone using PHP, SQL, HTML, CSS a
 
 - [x] The project must be tested on at least two of your classmates computers.
 
-## Todo
-- [ ] Update search function to perform a live search on keydown.
-> **Note:** It should update first after user has entered three keys.
-- [ ] As a user I'm able to delete my account along with all posts and comments..
+## Contribution
 
+- [x] Update search function to perform a live search on keydown.
+
+> **Note:** It should update first after user has entered three keys.
+
+- [x] As a user I'm able to delete my account along with all posts and comments etc.
+
+By: [Erik Johanesson](https://github.com/Erik-joh)
 
 ## How to use it
 
