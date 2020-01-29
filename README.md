@@ -66,7 +66,7 @@ School assignment at YRGO. Create an Instagram clone using PHP, SQL, HTML, CSS a
 
 - [x] As a user I'm able to delete my account along with all posts and comments etc.
 
-By: [Erik Johanesson](https://github.com/Erik-joh)
+Pull request by: [Erik Johanesson](https://github.com/jesperlndqvst/picture-this/pull/58)
 
 ## How to use it
 
