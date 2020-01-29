@@ -174,7 +174,8 @@ if (!function_exists('getAllPosts')) {
         LEFT JOIN followers
         ON posts.user_id = followers.user_id
         OR posts.user_id = followers.follow_id
-        INNER JOIN users ON posts.user_id = users.id
+        INNER JOIN users
+        ON posts.user_id = users.id
         WHERE followers.user_id = :id
         OR posts.user_id = :id
         ORDER BY posts.date DESC';

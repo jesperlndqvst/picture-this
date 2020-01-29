@@ -92,3 +92,5 @@ if (avatarForm) {
         reader.readAsDataURL(input.files[0]);
     });
 }
+
+
