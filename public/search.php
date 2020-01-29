@@ -17,22 +17,13 @@ authenticateUser($pdo);
         </div>
     <?php endif; ?>
 
-    <form class="form form--search" action="search.php" method="get">
+    <form class="form form--search" action="app/users/search.php" method="post">
         <input class="form__input" type="text" name="search" placeholder="Username" value autocomplete="off" required>
-        <button class="btn btn--lg" type="submit">Search</button>
     </form>
+    <div class="search-result-container">
 
-    <?php if (isset($_GET['search'])) : ?>
-        <?php $searchResults = getSearchResult($_GET['search'], $pdo) ?>
-        <?php foreach ($searchResults as $searchResult) : ?>
-            <a href="/profile.php?id=<?= $searchResult['id'] ?>&username=<?= $searchResult['username'] ?>">
-                <div class="search-result">
-                    <img class="search-result__img" src="app/uploads/avatars/<?= $searchResult['avatar'] ?>" alt="profile image">
-                    <p><?= $searchResult['username'] ?></p>
-                </div>
-            </a>
-        <?php endforeach; ?>
-    <?php endif; ?>
+    </div>
+
 
 </article>
 

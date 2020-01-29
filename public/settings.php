@@ -65,6 +65,11 @@ $user = getUserById((int) $_SESSION['user']['id'], $pdo)
 
     <a href="/app/users/logout.php"><button class="btn btn--lg">Log out</button></a>
 
+    <form action="app/users/delete.php" method="post">
+        <input type="hidden" name="id" value=" <?= $user['id'] ?>">
+        <button class="btn btn--lg delete" type="submit">Delete account</button>
+    </form>
+
 </article>
 
 <?php require __DIR__ . '/views/footer.php'; ?>
