@@ -58,16 +58,6 @@ School assignment at YRGO. Create an Instagram clone using PHP, SQL, HTML, CSS a
 
 - [x] The project must be tested on at least two of your classmates computers.
 
-## Contribution
-
-- [x] Update search function to perform a live search on keydown.
-
-> **Note:** It should update first after user has entered three keys.
-
-- [x] As a user I'm able to delete my account along with all posts and comments etc.
-
-Pull request by: [Erik Johanesson](https://github.com/jesperlndqvst/picture-this/pull/58)
-
 ## How to use it
 
 1. Clone this repository to your directory through the terminal.
@@ -85,8 +75,6 @@ $ php -S localhost:8000
 
 ## Preview
 <img src="https://i.imgur.com/i1SRj8C.png" width="33%" /> <img src="https://i.imgur.com/3xoXMre.png" width="33%" /> <img src="https://i.imgur.com/C0OsGZy.png" width="33%">
-
-
 
 ## Testers
 * [Daniel Thorsen](https://github.com/DanThor)
@@ -108,6 +96,15 @@ $ php -S localhost:8000
 
 Code review by: [Erik Johanesson](https://github.com/Erik-joh)
 
+## Contribution
+
+- [x] Update search function to perform a live search on keydown.
+
+> **Note:** It should update first after user has entered three keys.
+
+- [x] As a user I'm able to delete my account along with all posts and comments etc.
+
+Pull request by: [Erik Johanesson](https://github.com/jesperlndqvst/picture-this/pull/58)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
